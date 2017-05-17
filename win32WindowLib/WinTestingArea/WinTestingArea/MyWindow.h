@@ -18,33 +18,24 @@ public:
 		/* ---- DRAWING ---- */
 
 
-
 		/* ---- DEVELOPMENT MODE ----
 		Remove for release */
-		development_rect = { 10, ScreenRectHeight() - 20, 150, ScreenRectHeight() };
+		development_rect = { 10, ScreenRectHeight() - 20, 200, ScreenRectHeight() };
 		DrawText(hdc, DEV.data, strlen(DEV.data), &development_rect, DT_LEFT );
 		TK_UPDATE_RECT(hwnd(), NULL);
 	}
 
 	virtual void Update(double deltaTime) {
-		TK_UPDATE_RECT(hwnd(), &box_rect);
 		TK_UPDATE_RECT(hwnd(), &development_rect);
 	}
 
 private:
-	tk::String MousePos, KeyboardKey, DEV;
+	tk::String DEV;
 	RECT development_rect;
-	RECT box_rect;
-	bool Clicking;
-	int mb_click_id;
-
-	tk::win::WinImage _image;
 };
 
 MyWindow::MyWindow() {
-	
-	box_rect = { 150, 10, 250, 110 };
-	DEV = "Development Mode";
+	DEV = "Development Mode (0.1)";
 }
 
 MyWindow::~MyWindow() {
