@@ -1,0 +1,4 @@
+﻿  Main.cpp
+l:\win32_project\win32windowlib\wintestingarea\wintestingarea\mywindow.h(56): warning C4244: '+=': conversion from 'float' to 'LONG', possible loss of data
+l:\win32_project\win32windowlib\wintestingarea\wintestingarea\mywindow.h(57): warning C4244: '+=': conversion from 'float' to 'LONG', possible loss of data
+  WinTestingArea.vcxproj -> L:\WIN32_PROJECT\win32WindowLib\WinTestingArea\Debug\WinTestingArea.exe
