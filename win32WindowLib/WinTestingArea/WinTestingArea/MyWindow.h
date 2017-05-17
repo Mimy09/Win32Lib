@@ -44,7 +44,7 @@ private:
 MyWindow::MyWindow() {
 	
 	box_rect = { 150, 10, 250, 110 };
-	DEV = "Development Mode";
+	DEV = "Master";
 }
 
 MyWindow::~MyWindow() {
