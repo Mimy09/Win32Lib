@@ -1,27 +1,26 @@
 ﻿  tkTimer.cpp
   Main.cpp
-c:\users\s171816\desktop\win32windowlib\wintestingarea\wintestingarea\MyWindow.h(38): warning C4244: '+=': conversion from 'float' to 'LONG', possible loss of data
   tkWindow.cpp
 tkWindow.cpp(70): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
 tkWindow.cpp(74): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
-C:\Users\s171816\Desktop\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(67): warning C4018: '<': signed/unsigned mismatch
-  C:\Users\s171816\Desktop\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(66): note: while compiling class template member function 'int tk::ObjectPool<HBRUSH>::CheckObject(T)'
+L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(67): warning C4018: '<': signed/unsigned mismatch
+  L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(66): note: while compiling class template member function 'int tk::ObjectPool<HBRUSH>::CheckObject(T)'
           with
           [
               T=HBRUSH
           ]
-  C:\Users\s171816\Desktop\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(42): note: see reference to function template instantiation 'int tk::ObjectPool<HBRUSH>::CheckObject(T)' being compiled
+  L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(42): note: see reference to function template instantiation 'int tk::ObjectPool<HBRUSH>::CheckObject(T)' being compiled
           with
           [
               T=HBRUSH
           ]
-  c:\users\s171816\desktop\win32windowlib\wintestingarea\wintestingarea\tkWindow.h(207): note: see reference to class template instantiation 'tk::ObjectPool<HBRUSH>' being compiled
+  l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkWindow.h(207): note: see reference to class template instantiation 'tk::ObjectPool<HBRUSH>' being compiled
 tkWindow.cpp(145): warning C4008: 'WinMain': 'inline' attribute ignored
 ToolKit.lib(tkString.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  138 of 138 functions (100.0%) were compiled, the rest were copied from previous compilation.
+  136 of 136 functions (100.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  WinTestingArea.vcxproj -> C:\Users\s171816\Desktop\win32WindowLib\WinTestingArea\Release\WinTestingArea.exe
+  WinTestingArea.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\Release\WinTestingArea.exe
