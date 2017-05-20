@@ -2,7 +2,7 @@
 
 int main() {
 	MyWindow wnd;
-	wnd.Create("TEST", "TEST APPLICATION", RECT{ 0, 0, 800, 600 });
+	wnd.Create("ConnectFourClass", "Connect 4", RECT{ 0, 0, 800, 600 });
 	wnd.Show();
 
 
