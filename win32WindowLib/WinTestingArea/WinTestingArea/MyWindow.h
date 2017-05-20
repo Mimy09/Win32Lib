@@ -7,9 +7,6 @@ public:
 	~MyWindow();
 
 	virtual bool OnCreate(HWND hwnd) { 
-		Title.CreateWnd(hwnd, "BUTTON", "Connect 4", title_rect);
-		Title.SetTextSize(50);
-
 		return true;
 	}
 	
@@ -38,10 +35,6 @@ private:
 	RECT development_rect;
 
 	/* ---- PRIVATE VARIABLES ---- */
-	// Title Rect
-	RECT title_rect;
-	tk::win::WinObject Title;
-
 };
 
 MyWindow::MyWindow() {
