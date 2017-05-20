@@ -65,6 +65,7 @@ namespace tk {
 			case WM_KEYUP: win->OnKeyUp(wParam); break;
 			case WM_MOVE: win->OnWindowMove(); break;
 			case WM_EXITSIZEMOVE: win->UpdateTime(); win->OnWindowStopMoving(); break;
+			case WM_SIZING: win->OnWindowResize(); break;
 			}
 			return TK_DEFWINPROC;
 		}
