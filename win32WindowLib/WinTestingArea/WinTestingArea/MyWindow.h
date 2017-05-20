@@ -7,7 +7,7 @@ public:
 	~MyWindow();
 
 	virtual bool OnCreate(HWND hwnd) { 
-		Title.CreateWnd(hwnd, "BUTTON", "Connect 4", title_rect);
+		Title.CreateWnd(hwnd, "STATIC", "Connect 4", title_rect);
 		Title.SetTextSize(50);
 
 		return true;
@@ -31,6 +31,11 @@ public:
 		TK_UPDATE_RECT(hwnd(), &title_rect);
 		TK_UPDATE_RECT(hwnd(), &development_rect);
 	}
+	virtual void OnWindowResize() {
+		title_rect = { 0, 0, ScreenRectWidth(), 60 };
+		Title.SetPosition(title_rect);
+		TK_UPDATE_RECT(hwnd(), &title_rect);
+	}
 
 private:
 	/* -- DEV VAR --*/
@@ -46,7 +51,7 @@ private:
 
 MyWindow::MyWindow() {
 	DEV = "Development Mode (0.1)";
-	title_rect = { 200, 50, 200, 10 };
+	title_rect = { 0, 0, ScreenRectWidth(), 60 };
 }
 
 MyWindow::~MyWindow() {

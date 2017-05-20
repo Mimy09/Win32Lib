@@ -294,6 +294,7 @@ namespace tk {
 			virtual void OnScreenSave(){}
 			virtual void OnWindowMove(){}
 			virtual void OnWindowStopMoving(){}
+			virtual void OnWindowResize(){}
 
 			tk::ObjectPool<HBRUSH> brushPool;
 
