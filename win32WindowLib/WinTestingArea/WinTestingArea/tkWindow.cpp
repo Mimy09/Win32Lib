@@ -4,6 +4,7 @@ int main();
 
 namespace tk {
 	namespace win {
+
 		LRESULT TK_WinProc() {
 			tk::win::Window* win = (tk::win::Window *) GetWindowLong(hwnd, 0);
 
@@ -44,7 +45,14 @@ namespace tk {
 				if ((wParam & 0xFFF0) == SC_MAXIMIZE) { win->UpdateTime(); win->OnWindowMaximize(); }
 				if ((wParam & 0xFFF0) == SC_SCREENSAVE) { win->UpdateTime(); win->OnScreenSave(); }
 				break;
-			case WM_COMMAND: break;
+			case WM_COMMAND:
+				switch (LOWORD(wParam)) {
+				case BN_CLICKED: win->OnBtnClicked((HWND)lParam); break;
+				case BN_DBLCLK: win->OnBtnDBClicked((HWND)lParam); break;
+				case BN_PUSHED: win->OnBtnPushed((HWND)lParam); break;
+				case BN_UNPUSHED: win->OnBtnUnpushed((HWND)lParam); break;
+				}
+				break;
 			case WM_LBUTTONUP:
 			case WM_MBUTTONUP:
 			case WM_RBUTTONUP: win->OnMouseUp(LOWORD(lParam), HIWORD(lParam), wParam); break;
@@ -57,7 +65,6 @@ namespace tk {
 			case WM_KEYUP: win->OnKeyUp(wParam); break;
 			case WM_MOVE: win->OnWindowMove(); break;
 			case WM_EXITSIZEMOVE: win->UpdateTime(); win->OnWindowStopMoving(); break;
-
 			}
 			return TK_DEFWINPROC;
 		}
