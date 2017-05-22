@@ -56,6 +56,12 @@ namespace tk {
 			}
 		}
 
+		// ---- GET LENGTH ----
+		// Returns the length of the pool
+		int GetLength() {
+			return m_pool.size();
+		}
+
 	private:
 		// ---- POOL ----
 		// m_pool stores all the pooled data

@@ -25,6 +25,7 @@ namespace tk {
 		void SetInternal(float* xx, float* yy);
 
 		operator float*();
+		float& operator[](int index);
 		Vector2& operator=(Vector2 other);
 		inline Vector2 operator+(Vector2 other) { return Add(other); }
 		inline Vector2 operator-(Vector2 other) { return Sub(other); }
@@ -72,6 +73,7 @@ namespace tk {
 
 		void SetInternal(float* xx, float* yy, float* zz);
 
+		float& operator[](int index);
 		operator float*();
 		Vector3& operator=(Vector3 other);
 		inline Vector3 operator+(Vector3 other) { return Add(other); }
@@ -124,6 +126,7 @@ namespace tk {
 
 		void SetInternal(float* xx, float* yy, float* zz, float* ww);
 
+		float & operator[](int index);
 		operator float*();
 		Vector4& operator=(Vector4 other);
 		inline Vector4 operator+(Vector4 other) { return Add(other); }

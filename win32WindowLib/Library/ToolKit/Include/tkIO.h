@@ -5,7 +5,8 @@
 namespace tk {
 	class IO {
 	public:
-		static enum Mode { ReadOnly, ReadWrite, Empty };
+		
+		enum Mode { ReadOnlyBinary, ReadWriteBinary, ReadWrite, ReadOnly, Empty };
 
 		IO(String Path) : m_path(Path) {}
 		IO() { m_path = ""; }
@@ -26,6 +27,17 @@ namespace tk {
 					m_file = fopen(m_path.data, "wb");
 				} fclose(m_file);
 				m_file = fopen(m_path.data, "r+b");
+				break;
+			case tk::IO::ReadOnlyBinary:
+				m_file = fopen(m_path.data, "r");
+				break;
+			case tk::IO::ReadWriteBinary:
+				m_file = fopen(m_path.data, "r");
+				if (m_file == NULL) {
+					fclose(m_file);
+					m_file = fopen(m_path.data, "w");
+				} fclose(m_file);
+				m_file = fopen(m_path.data, "r+");
 				break;
 			case tk::IO::Empty:
 				m_file = fopen(m_path.data, "wb");
