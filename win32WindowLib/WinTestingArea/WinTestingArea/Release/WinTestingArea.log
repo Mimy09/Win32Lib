@@ -1,25 +1,9 @@
-﻿  tkWindow.cpp
-L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkIO.h(8): warning C4091: 'static ': ignored on left of 'tk::IO::Mode' when no variable is declared
-tkWindow.cpp(78): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
-tkWindow.cpp(82): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
-L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(67): warning C4018: '<': signed/unsigned mismatch
-  L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(66): note: while compiling class template member function 'int tk::ObjectPool<HBRUSH>::CheckObject(T)'
-          with
-          [
-              T=HBRUSH
-          ]
-  L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(42): note: see reference to function template instantiation 'int tk::ObjectPool<HBRUSH>::CheckObject(T)' being compiled
-          with
-          [
-              T=HBRUSH
-          ]
-  l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkWindow.h(301): note: see reference to class template instantiation 'tk::ObjectPool<HBRUSH>' being compiled
-tkWindow.cpp(159): warning C4008: 'WinMain': 'inline' attribute ignored
+﻿  Main.cpp
 ToolKit.lib(tkString.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  6 of 153 functions ( 3.9%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+  1 of 154 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   WinTestingArea.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\Release\WinTestingArea.exe

@@ -299,7 +299,7 @@ namespace tk {
 			virtual void OnWindowResize(){}
 
 			tk::ObjectPool<HBRUSH> brushPool;
-			tk::String version;
+			tk::String _version;
 
 		private:
 			MSG _msg;

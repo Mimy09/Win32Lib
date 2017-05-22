@@ -1,5 +1,6 @@
 #include "tkWindow.h"
-
+#include <stdlib.h>
+#include <tkMatrix.h>
 int main();
 
 namespace tk {
@@ -116,11 +117,11 @@ namespace tk {
 
 			_timer.start();
 			prevTime = 0;
+			_version = "";
 
-			version = "0.1";
-			_versionFile.SetPath("../../VERSION.dat");
-			_versionFile.Open(tk::IO::ReadWrite);
-			_versionFile.Write(version.data);
+			_versionFile.SetPath("../../VERSION.txt");
+			_versionFile.Open(tk::IO::ReadOnly);
+			_versionFile.Read(_version, 0);
 			_versionFile.Close();
 
 		}

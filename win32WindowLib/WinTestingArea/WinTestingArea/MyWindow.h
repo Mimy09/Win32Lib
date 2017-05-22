@@ -21,7 +21,7 @@ public:
 		/* ---- DEVELOPMENT MODE ----
 		Remove for release */
 		development_rect = { 10, ScreenRectHeight() - 20, 200, ScreenRectHeight() };
-		DrawText(hdc, DEV.data, strlen(DEV.data), &development_rect, DT_LEFT );
+		DrawText(hdc, _version.data, strlen(_version.data), &development_rect, DT_LEFT );
 		TK_UPDATE_RECT(hwnd(), NULL);
 	}
 
@@ -39,7 +39,6 @@ public:
 
 private:
 	/* -- DEV VAR --*/
-	tk::String DEV;
 	RECT development_rect;
 
 	/* ---- PRIVATE VARIABLES ---- */
@@ -49,7 +48,6 @@ private:
 };
 
 MyWindow::MyWindow() {
-	DEV = "Development Mode (0.1)";
 	title_rect = { 0, 0, ScreenRectWidth(), 60 };
 }
 
