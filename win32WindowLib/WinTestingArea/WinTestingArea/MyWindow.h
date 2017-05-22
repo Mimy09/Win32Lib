@@ -46,7 +46,6 @@ private:
 	// Title Rect
 	RECT title_rect;
 	tk::win::WinObject Title;
-
 };
 
 MyWindow::MyWindow() {

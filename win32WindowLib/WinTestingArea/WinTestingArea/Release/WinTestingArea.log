@@ -1,27 +1,25 @@
-﻿  Main.cpp
-  tkWindow.cpp
+﻿  tkWindow.cpp
+L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkIO.h(8): warning C4091: 'static ': ignored on left of 'tk::IO::Mode' when no variable is declared
 tkWindow.cpp(78): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
 tkWindow.cpp(82): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
-C:\Users\Mitchell\Desktop\c++\Assignment - ConnectFour\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(67): warning C4018: '<': signed/unsigned mismatch
-  C:\Users\Mitchell\Desktop\c++\Assignment - ConnectFour\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(66): note: while compiling class template member function 'int tk::ObjectPool<HBRUSH>::CheckObject(T)'
+L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(67): warning C4018: '<': signed/unsigned mismatch
+  L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(66): note: while compiling class template member function 'int tk::ObjectPool<HBRUSH>::CheckObject(T)'
           with
           [
               T=HBRUSH
           ]
-  C:\Users\Mitchell\Desktop\c++\Assignment - ConnectFour\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(42): note: see reference to function template instantiation 'int tk::ObjectPool<HBRUSH>::CheckObject(T)' being compiled
+  L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkObjectPool.h(42): note: see reference to function template instantiation 'int tk::ObjectPool<HBRUSH>::CheckObject(T)' being compiled
           with
           [
               T=HBRUSH
           ]
-  c:\users\mitchell\desktop\c++\assignment - connectfour\win32lib\win32windowlib\wintestingarea\wintestingarea\tkWindow.h(299): note: see reference to class template instantiation 'tk::ObjectPool<HBRUSH>' being compiled
-tkWindow.cpp(153): warning C4008: 'WinMain': 'inline' attribute ignored
+  l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkWindow.h(301): note: see reference to class template instantiation 'tk::ObjectPool<HBRUSH>' being compiled
+tkWindow.cpp(159): warning C4008: 'WinMain': 'inline' attribute ignored
 ToolKit.lib(tkString.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  12 of 140 functions ( 8.6%) were compiled, the rest were copied from previous compilation.
-    2 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+  6 of 153 functions ( 3.9%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-ToolKit.lib(tkString.obj) : warning LNK4099: PDB 'ToolKit.pdb' was not found with 'ToolKit.lib(tkString.obj)' or at 'C:\Users\Mitchell\Desktop\c++\Assignment - ConnectFour\Win32Lib\win32WindowLib\WinTestingArea\Release\ToolKit.pdb'; linking object as if no debug info
-  WinTestingArea.vcxproj -> C:\Users\Mitchell\Desktop\c++\Assignment - ConnectFour\Win32Lib\win32WindowLib\WinTestingArea\Release\WinTestingArea.exe
-  WinTestingArea.vcxproj -> C:\Users\Mitchell\Desktop\c++\Assignment - ConnectFour\Win32Lib\win32WindowLib\WinTestingArea\Release\WinTestingArea.pdb (Full PDB)
+  WinTestingArea.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\Release\WinTestingArea.exe

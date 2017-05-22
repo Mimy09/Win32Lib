@@ -117,6 +117,12 @@ namespace tk {
 			_timer.start();
 			prevTime = 0;
 
+			version = "0.1";
+			_versionFile.SetPath("../../VERSION.dat");
+			_versionFile.Open(tk::IO::ReadWrite);
+			_versionFile.Write(version.data);
+			_versionFile.Close();
+
 		}
 		void Window::Show() {
 			if (!_hwnd) TK_EXCEPTION("WINDOW HANDLE ERROR");
