@@ -7,7 +7,10 @@ public:
 	MyWindow();
 	~MyWindow();
 
-	virtual bool OnCreate(HWND hwnd) { 
+	virtual bool OnCreate(HWND hwnd) {
+
+		gsm.SetState(new tk::GameMenuState());
+
 		Title.CreateWnd(hwnd, "STATIC", "Connect 4", title_rect);
 		Title.SetTextSize(50);
 

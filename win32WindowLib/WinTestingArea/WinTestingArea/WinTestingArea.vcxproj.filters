@@ -44,5 +44,14 @@
     <ClInclude Include="tkLinkList.h">
       <Filter>Source Files\ToolKit</Filter>
     </ClInclude>
+    <ClInclude Include="tkGameStateManager.h">
+      <Filter>Source Files\ToolKit\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="tkState.h">
+      <Filter>Source Files\ToolKit\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="tkGameStates.h">
+      <Filter>Source Files\ToolKit\GameState</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

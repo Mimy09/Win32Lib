@@ -10,6 +10,7 @@
 #include <tkObjectPool.h>
 #include <tkIO.h>
 
+#include "tkGameStateManager.h"
 #include "tkTimer.h"
 
 /** Definitions */
@@ -300,6 +301,8 @@ namespace tk {
 
 			tk::ObjectPool<HBRUSH> brushPool;
 			tk::String _version;
+			tk::GameStateManager gsm;
+			
 
 		private:
 			MSG _msg;

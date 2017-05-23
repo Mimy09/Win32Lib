@@ -153,6 +153,9 @@
     <ClCompile Include="tkWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="tkGameStates.h" />
+    <ClInclude Include="tkState.h" />
+    <ClInclude Include="tkGameStateManager.h" />
     <ClInclude Include="tkLinkList.h" />
     <ClInclude Include="tkTimer.h" />
     <ClInclude Include="MyWindow.h" />
