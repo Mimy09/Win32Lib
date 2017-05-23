@@ -8,6 +8,8 @@
 #include <Windows.h>
 #include <tkException.h>
 #include <tkObjectPool.h>
+#include <tkIO.h>
+
 #include "tkTimer.h"
 
 /** Definitions */
@@ -297,6 +299,7 @@ namespace tk {
 			virtual void OnWindowResize(){}
 
 			tk::ObjectPool<HBRUSH> brushPool;
+			tk::String _version;
 
 		private:
 			MSG _msg;
@@ -304,6 +307,8 @@ namespace tk {
 			HWND _hwnd;
 			Timer _timer;
 			WNDCLASSEX _wc;
+
+			tk::IO _versionFile;
 
 			double prevTime = 0;
 		};
