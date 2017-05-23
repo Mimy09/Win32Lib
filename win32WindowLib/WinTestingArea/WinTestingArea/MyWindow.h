@@ -1,5 +1,6 @@
 #pragma once
 #include "tkWindow.h"
+#include "tkLinkList.h"
 
 class MyWindow : public tk::win::Window {
 public:
@@ -12,11 +13,19 @@ public:
 
 		return true;
 	}
+
+	virtual void OnMouseDown(int x, int y, UINT param) {
+		
+	}
 	
 	virtual void OnPaint(HDC hdc) {
 		SelectObject(hdc, TK_BRUSH_WHITE);
 		PatBlt(hdc, 0, 0, ScreenRectWidth(), ScreenRectHeight(), PATCOPY);
 		SelectObject(hdc, TK_BRUSH_BLACK);
+
+		for (int i = 0; i < 10; i++) {
+			
+		}
 
 		/* ---- DEVELOPMENT MODE ----
 		Remove for release */
@@ -38,7 +47,7 @@ public:
 	}
 
 private:
-	/* -- DEV VAR --*/
+	/* -- DEV VAR -- */
 	RECT development_rect;
 
 	/* ---- PRIVATE VARIABLES ---- */

@@ -16,6 +16,9 @@
     <Filter Include="Source Files\ToolKit">
       <UniqueIdentifier>{3e9c9607-23e1-487f-928f-cbcdac081ed4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ToolKit\GameState">
+      <UniqueIdentifier>{ca3584fe-72b3-48ad-a556-d486b2959800}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -36,6 +39,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="tkTimer.h">
+      <Filter>Source Files\ToolKit</Filter>
+    </ClInclude>
+    <ClInclude Include="tkLinkList.h">
       <Filter>Source Files\ToolKit</Filter>
     </ClInclude>
   </ItemGroup>
