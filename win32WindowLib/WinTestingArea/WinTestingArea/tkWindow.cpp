@@ -29,6 +29,8 @@ namespace tk {
 				SelectObject(win->memDC, win->hBitmat);
 				ReleaseDC(hwnd, hdc);
 
+				win->m_sm.SetState(new tk::states::InitState());
+
 				if (win->OnCreate(hwnd)) break; return -1;
 			}
 			case WM_PAINT:
@@ -74,28 +76,28 @@ namespace tk {
 		}
 
 		void Window::Create(tk::String className, tk::String winTitle, RECT winPos) {
-			ZeroMemory(&_wc, sizeof(WNDCLASSEX));
-			ZeroMemory(&_msg, sizeof(MSG));
+			ZeroMemory(&m_wc, sizeof(WNDCLASSEX));
+			ZeroMemory(&m_msg, sizeof(MSG));
 			HINSTANCE hInstance = GetModuleHandle(NULL);
 
-			this->_wc.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
-			this->_wc.style = CS_HREDRAW | CS_VREDRAW;
-			this->_wc.cbSize = sizeof(WNDCLASSEX);
-			this->_wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-			this->_wc.hIconSm = LoadIcon(_wc.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
-			this->_wc.hInstance = hInstance;
-			this->_wc.cbClsExtra = 0;
-			this->_wc.cbWndExtra = sizeof(void*);
-			this->_wc.lpfnWndProc = WinProc;
-			this->_wc.lpszMenuName = NULL;
-			this->_wc.lpszClassName = className.data;
-			this->_wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-			if (!RegisterClassEx(&_wc)) TK_EXCEPTION("WINDOW ERROR");
+			this->m_wc.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
+			this->m_wc.style = CS_HREDRAW | CS_VREDRAW;
+			this->m_wc.cbSize = sizeof(WNDCLASSEX);
+			this->m_wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+			this->m_wc.hIconSm = LoadIcon(m_wc.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
+			this->m_wc.hInstance = hInstance;
+			this->m_wc.cbClsExtra = 0;
+			this->m_wc.cbWndExtra = sizeof(void*);
+			this->m_wc.lpfnWndProc = WinProc;
+			this->m_wc.lpszMenuName = NULL;
+			this->m_wc.lpszClassName = className.data;
+			this->m_wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+			if (!RegisterClassEx(&m_wc)) TK_EXCEPTION("WINDOW ERROR");
 
 			RECT rectPos = { winPos.left, winPos.top, 0, 0 };
 			AdjustWindowRectEx(&winPos, WS_OVERLAPPEDWINDOW, false, WS_EX_OVERLAPPEDWINDOW);
 
-			this->_hwnd = CreateWindowEx(
+			this->m_hwnd = CreateWindowEx(
 				WS_EX_OVERLAPPEDWINDOW,
 				className.data,
 				winTitle.data,
@@ -106,55 +108,61 @@ namespace tk {
 				winPos.bottom - winPos.top,
 				NULL,
 				NULL,
-				this->_wc.hInstance,
+				this->m_wc.hInstance,
 				(LPVOID) this
 			);
-			if (!_hwnd) TK_EXCEPTION("WINDOW ERROR");
+			if (!m_hwnd) TK_EXCEPTION("WINDOW ERROR");
 
-			brushPool.AddObject(CreateSolidBrush(RGB(0, 0, 0)));
-			brushPool.AddObject(CreateSolidBrush(RGB(255, 255, 255)));
-			brushPool.AddObject(CreateSolidBrush(RGB(255, 0, 0)));
-			brushPool.AddObject(CreateSolidBrush(RGB(0, 255, 0)));
-			brushPool.AddObject(CreateSolidBrush(RGB(0, 0, 255)));
 
-			_timer.start();
+			m_brushPool.AddObject(CreateSolidBrush(RGB(0, 0, 0)));
+			m_brushPool.AddObject(CreateSolidBrush(RGB(255, 255, 255)));
+			m_brushPool.AddObject(CreateSolidBrush(RGB(255, 0, 0)));
+			m_brushPool.AddObject(CreateSolidBrush(RGB(0, 255, 0)));
+			m_brushPool.AddObject(CreateSolidBrush(RGB(0, 0, 255)));
+
+			m_timer.start();
 			prevTime = 0;
-			_version = "";
+			m_version = "";
 
-			_versionFile.SetPath("../../VERSION.txt");
-			_versionFile.Open(tk::IO::ReadOnly);
-			_versionFile.Read(_version, 0);
-			_versionFile.Close();
+			m_versionFile.SetPath("../../VERSION.txt");
+			m_versionFile.Open(tk::IO::ReadOnly);
+			m_versionFile.Read(m_version, 0);
+			m_versionFile.Close();
 
 		}
 		void Window::Show() {
-			if (!_hwnd) TK_EXCEPTION("WINDOW HANDLE ERROR");
-			ShowWindow(_hwnd, SW_SHOW);
-			UpdateWindow(_hwnd);
+			if (!m_hwnd) TK_EXCEPTION("WINDOW HANDLE ERROR");
+			ShowWindow(m_hwnd, SW_SHOW);
+			UpdateWindow(m_hwnd);
+
+			m_sm.SetState(new tk::states::MenuState());
 		}
 		void Window::Hide() {
-			if (!_hwnd) TK_EXCEPTION("WINDOW HANDLE ERROR");
-			ShowWindow(_hwnd, SW_HIDE);
-			UpdateWindow(_hwnd);
+			if (!m_hwnd) TK_EXCEPTION("WINDOW HANDLE ERROR");
+			ShowWindow(m_hwnd, SW_HIDE);
+			UpdateWindow(m_hwnd);
 		}
 		int Window::Run() {
-			if (_msg.message != WM_QUIT) {
-				if (PeekMessage(&_msg, 0, 0, 0, PM_REMOVE)) {
-					TranslateMessage(&_msg);
-					DispatchMessage(&_msg);
+			if (m_msg.message != WM_QUIT) {
+				if (PeekMessage(&m_msg, 0, 0, 0, PM_REMOVE)) {
+					TranslateMessage(&m_msg);
+					DispatchMessage(&m_msg);
 					return 1;
 				}
 				else {
-					double now = _timer.elapsed();
+					double now = m_timer.elapsed();
 					double deltaTime = now - prevTime;
+					
 					Update(deltaTime);
+					m_sm.Update();
+
 					prevTime = now;
 					return 0;
 				}
 			} else { return -1; }
 		}
 		void Window::Update(double deltaTime) {
-			TK_UPDATE_RECT(_hwnd, NULL);
+			TK_UPDATE_RECT(m_hwnd, NULL);
 		}
 	}
 }

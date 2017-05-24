@@ -30,6 +30,9 @@
     <ClCompile Include="tkTimer.cpp">
       <Filter>Source Files\ToolKit</Filter>
     </ClCompile>
+    <ClCompile Include="tkStateManager.cpp">
+      <Filter>Source Files\ToolKit\GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tkWindow.h">
@@ -44,14 +47,14 @@
     <ClInclude Include="tkLinkList.h">
       <Filter>Source Files\ToolKit</Filter>
     </ClInclude>
-    <ClInclude Include="tkGameStateManager.h">
-      <Filter>Source Files\ToolKit\GameState</Filter>
-    </ClInclude>
     <ClInclude Include="tkState.h">
       <Filter>Source Files\ToolKit\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="tkGameStates.h">
+    <ClInclude Include="tkStateManager.h">
       <Filter>Source Files\ToolKit\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="tkWinObjects.h">
+      <Filter>Source Files\ToolKit</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

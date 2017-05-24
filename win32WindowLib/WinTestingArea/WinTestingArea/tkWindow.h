@@ -9,8 +9,8 @@
 #include <tkException.h>
 #include <tkObjectPool.h>
 #include <tkIO.h>
-
-#include "tkGameStateManager.h"
+#include "tkWinObjects.h"
+#include "tkStateManager.h"
 #include "tkTimer.h"
 
 /** Definitions */
@@ -25,148 +25,14 @@
 #define TK_MSG_UPDATE 0
 #define TK_MSG_DISPATCH 1
 
-#define TK_BRUSH_BLACK *brushPool.ReturnObject(0)
-#define TK_BRUSH_WHITE *brushPool.ReturnObject(1)
-#define TK_BRUSH_RED *brushPool.ReturnObject(2)
-#define TK_BRUSH_GREEN *brushPool.ReturnObject(3)
-#define TK_BRUSH_BLUE *brushPool.ReturnObject(4)
+#define TK_BRUSH_BLACK *m_brushPool.ReturnObject(0)
+#define TK_BRUSH_WHITE *m_brushPool.ReturnObject(1)
+#define TK_BRUSH_RED *m_brushPool.ReturnObject(2)
+#define TK_BRUSH_GREEN *m_brushPool.ReturnObject(3)
+#define TK_BRUSH_BLUE *m_brushPool.ReturnObject(4)
 
 namespace tk {
 	namespace win {
-
-		struct WinObject {
-			WinObject() {_hwnd = nullptr; }
-			/* ---- WinObject ----
-			Constructor for the WinObject
-			#param hwnd - The window handler
-			#param classType - The type of window that will be created
-				e.g. "BUTTON", "LISTBOX"
-			#param text - The text that will be displayed in the window
-			#param rect - The local position that the window will be created at */
-			WinObject(HWND hwnd, tk::String classType,  tk::String text, RECT rect) {
-				HWND hwndObject = CreateWindow(
-					classType.data, text.data,
-					WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-					rect.left, rect.top,
-					rect.left + rect.right,
-					rect.top + rect.bottom,
-					hwnd,
-					NULL,
-					GetModuleHandle(NULL),
-					NULL
-				); _hwnd = hwndObject;
-			}
-			/* ---- CreateWnd ----
-			Creates a WinObject
-			#param hwnd - The window handler
-			#param classType - The type of window that will be created
-			e.g. "BUTTON", "LISTBOX"
-			#param text - The text that will be displayed in the window
-			#param rect - The local position that the window will be created at */
-			void CreateWnd(HWND hwnd, tk::String classType, tk::String text, RECT rect) {
-				HWND hwndObject = CreateWindow(
-					classType.data, text.data,
-					WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-					rect.left, rect.top,
-					rect.left + rect.right,
-					rect.top + rect.bottom,
-					hwnd,
-					NULL,
-					GetModuleHandle(NULL),
-					NULL
-				); _hwnd = hwndObject;
-			}
-			/* ---- SetTextSize ----
-			Sets the size of text that will be displayed inside the window
-			#param Size - The size of text */
-			void SetTextSize(int Size) {
-				HFONT hFont = CreateFont(
-					Size, 0, 0, 0,
-					FW_DONTCARE,
-					FALSE, FALSE, FALSE,
-					ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY,
-					DEFAULT_PITCH | FF_SWISS,
-					"Arial"
-				);
-				SendMessage(_hwnd, WM_SETFONT, WPARAM(hFont), TRUE);
-			}
-			/* ---- SetPosition ----
-			Sets the position of the window
-			#param rect - The rect that will be used to set the position*/
-			void SetPosition(RECT rect) {
-				MoveWindow(
-					_hwnd,
-					rect.left, rect.top,
-					rect.right, rect.bottom,
-					true
-				);
-			}
-			/* ---- hwnd ----
-			Return the window handle of this window
-			#return HWND - returns the window handle*/
-			HWND hwnd() { return _hwnd; }
-		private:
-			// Stores the window handle of the created window
-			HWND _hwnd;
-		};
-
-		struct WinImage {
-			/* ---- WinImage ---- 
-			Creates an image to be drawn on screen */
-			WinImage() {
-				bmpSource = NULL;
-				hdcSource = NULL;
-			}
-			/* ---- Load ----
-			Loads a selected file in to draw
-			#param file - The path to the image*/
-			void Load(tk::String file) {
-				bmpSource = (HBITMAP)LoadImage(NULL, file.data, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-				hdcSource = CreateCompatibleDC(GetDC(0));
-			}
-			/* ---- Secect ----
-			Selects the image so it can be drawn
-			@NOTE - This needs to be called befor drawing*/
-			void Select() { SelectObject(hdcSource, bmpSource); }
-			/* ---- Draw ---- 
-			Draws the image to screen
-			#param hdc - The handle to the display
-			#param rect - The rect that the image is drawn to
-			@NOTE - Select() needs to be called befor drawing*/
-			void Draw(HDC hdc, RECT rect){
-				BitBlt(
-					hdc,
-					rect.left, rect.top,
-					rect.right, rect.bottom,
-					hdcSource, 0, 0, SRCCOPY
-				);
-			}
-		private:
-			// Stores the bitmap of the image
-			HBITMAP bmpSource;
-			// Stores the handle to the display
-			HDC hdcSource;
-		};
-
-		struct WinText {
-			/* ---- WinText ----
-			Default constructor for WinText
-			#param hdc -The handle to the display
-			#param Text - The text that will be displayed
-			#param Position - The position that the text will be displayed at*/
-			WinText(HDC hdc, tk::String Text, RECT Position) {
-				pos = {
-					Position.left, Position.top,
-					Position.left + Position.right,
-					Position.top + Position.bottom
-				};
-				DrawText(hdc, Text.data, strlen(Text.data), &pos, DT_LEFT);
-			}
-		private:
-			// Stores the position of the text
-			RECT pos;
-		};
-
 		class Window {
 		public:
 
@@ -226,12 +92,12 @@ namespace tk {
 			/* ---- ScreenRectWidth ----
 			Gets the Screen width
 			#return int - Returns the screen width*/
-			virtual inline int ScreenRectWidth() { GetClientRect(_hwnd, &_rc); return _rc.right - _rc.left; }
+			virtual inline int ScreenRectWidth() { GetClientRect(m_hwnd, &m_rc); return m_rc.right - m_rc.left; }
 
 			/* ---- ScreenRectHeight ----
 			Gets the Screen height
 			#return int - Returns the screen height*/
-			virtual inline int ScreenRectHeight() { GetClientRect(_hwnd, &_rc); return _rc.bottom - _rc.top; }
+			virtual inline int ScreenRectHeight() { GetClientRect(m_hwnd, &m_rc); return m_rc.bottom - m_rc.top; }
 
 			// Sets the WinProc as a friend of this class
 			friend LRESULT TK_WinProc();
@@ -239,11 +105,11 @@ namespace tk {
 			/* ---- hwnd ----
 			Gets the hwnd
 			#return HWND - Returns the hwnd*/
-			inline HWND hwnd() { return _hwnd; }
+			inline HWND hwnd() { return m_hwnd; }
 
 			/* ---- UpdateTime ----
 			Updates the prevTime of the deltaTime */
-			inline void UpdateTime() { prevTime = _timer.elapsed(); }
+			inline void UpdateTime() { prevTime = m_timer.elapsed(); }
 
 
 		protected:
@@ -299,19 +165,19 @@ namespace tk {
 			virtual void OnWindowStopMoving(){}
 			virtual void OnWindowResize(){}
 
-			tk::ObjectPool<HBRUSH> brushPool;
-			tk::String _version;
-			tk::GameStateManager gsm;
+			tk::ObjectPool<HBRUSH> m_brushPool;
+			tk::String m_version;
 			
+			tk::StateManager m_sm;
 
 		private:
-			MSG _msg;
-			RECT _rc;
-			HWND _hwnd;
-			Timer _timer;
-			WNDCLASSEX _wc;
+			MSG m_msg;
+			RECT m_rc;
+			HWND m_hwnd;
+			Timer m_timer;
+			WNDCLASSEX m_wc;
 
-			tk::IO _versionFile;
+			tk::IO m_versionFile;
 
 			double prevTime = 0;
 		};
