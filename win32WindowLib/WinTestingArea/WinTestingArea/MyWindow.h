@@ -40,21 +40,14 @@ private:
 	RECT development_rect;
 
 	/* ---- PRIVATE VARIABLES ---- */
-<<<<<<< HEAD
-
-};
-
-MyWindow::MyWindow() {
-	DEV = "Development Mode (0.1)";
-=======
 	// Title Rect
 	RECT title_rect;
 	tk::win::WinObject Title;
+
 };
 
 MyWindow::MyWindow() {
 	title_rect = { 0, 0, ScreenRectWidth(), 60 };
->>>>>>> ConnectFour
 }
 
 MyWindow::~MyWindow() {
