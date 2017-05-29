@@ -33,6 +33,9 @@
     <ClCompile Include="tkStateManager.cpp">
       <Filter>Source Files\ToolKit\GameState</Filter>
     </ClCompile>
+    <ClCompile Include="MyWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tkWindow.h">

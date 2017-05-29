@@ -6,6 +6,7 @@ namespace tk {
 	enum class GAME_STATE {
 		INIT,
 		MENU,
+		OPTIONS,
 		GAME_RUNNING,
 		IDLE,
 		CLOSING
@@ -51,6 +52,18 @@ namespace tk {
 			~MenuState() {}
 
 			virtual GAME_STATE GetState() { return GAME_STATE::MENU; }
+		private:
+
+		};
+
+
+		/* ---- OPTIONS ---- */
+		class OptionsState : public State {
+		public:
+			OptionsState() {}
+			~OptionsState() {}
+
+			virtual GAME_STATE GetState() { return GAME_STATE::OPTIONS; }
 		private:
 
 		};

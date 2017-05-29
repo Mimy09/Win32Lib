@@ -152,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MyWindow.cpp" />
     <ClCompile Include="tkStateManager.cpp" />
     <ClCompile Include="tkTimer.cpp" />
     <ClCompile Include="Main.cpp" />

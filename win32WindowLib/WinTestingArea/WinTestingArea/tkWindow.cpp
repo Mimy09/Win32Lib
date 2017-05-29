@@ -101,7 +101,7 @@ namespace tk {
 				WS_EX_OVERLAPPEDWINDOW,
 				className.data,
 				winTitle.data,
-				WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN,
+				WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME | WS_CLIPCHILDREN,
 				rectPos.left == 0 ? CW_USEDEFAULT : rectPos.left,
 				rectPos.top == 0 ? CW_USEDEFAULT : rectPos.top,
 				winPos.right - winPos.left,
@@ -125,6 +125,8 @@ namespace tk {
 			m_version = "";
 
 			m_versionFile.SetPath("../../VERSION.txt");
+			//m_versionFile.Open(tk::IO::ReadWrite);
+			//m_versionFile.Write("VERSION=0.3");
 			m_versionFile.Open(tk::IO::ReadOnly);
 			m_versionFile.Read(m_version, 0);
 			m_versionFile.Close();

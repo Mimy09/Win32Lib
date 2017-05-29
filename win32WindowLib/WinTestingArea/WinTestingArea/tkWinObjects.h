@@ -4,6 +4,8 @@
 
 namespace tk {
 	namespace win {
+		
+
 		struct WinObject {
 			WinObject() { _hwnd = nullptr; }
 			/* ---- WinObject ----
@@ -139,6 +141,7 @@ namespace tk {
 				SelectObject(hdc, hFontOld);
 			}
 			void Draw(HDC hdc, tk::String Text, RECT Position) {
+				if (hFontOld == NULL)hFontOld = (HFONT)SelectObject(hdc, font);
 				pos = {
 					Position.left, Position.top,
 					Position.left + Position.right,
@@ -148,12 +151,15 @@ namespace tk {
 				DrawText(hdc, Text.data, strlen(Text.data), &pos, DT_CENTER);
 				if (hFontOld) SelectObject(hdc, hFontOld);
 			}
-			void SetFont(HDC hdc, int size) {
-				font = CreateFont(size, 0, 0, 0, 300,
-					false, false, false,
-					DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH,
+			void SetFont(int size) {
+				font = CreateFont(
+					size, 0, 0, 0,
+					FW_DONTCARE,
+					FALSE, FALSE, FALSE,
+					ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY,
+					DEFAULT_PITCH | FF_SWISS,
 					"Arial"
-				); hFontOld = (HFONT)SelectObject(hdc, font);
+				); 
 			}
 			HFONT font;
 		private:

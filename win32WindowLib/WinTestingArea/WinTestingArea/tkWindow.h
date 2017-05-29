@@ -168,13 +168,13 @@ namespace tk {
 			tk::ObjectPool<HBRUSH> m_brushPool;
 			tk::String m_version;
 			
+			tk::Timer m_timer;
 			tk::StateManager m_sm;
 
 		private:
 			MSG m_msg;
 			RECT m_rc;
 			HWND m_hwnd;
-			Timer m_timer;
 			WNDCLASSEX m_wc;
 
 			tk::IO m_versionFile;
