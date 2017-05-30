@@ -10,6 +10,8 @@ MyWindow::MyWindow() {
 	m_start.SetFont(46);
 	m_options.SetFont(46);
 	m_exit.SetFont(46);
+
+	tri = { tk::win::Vec2{300, 300}, tk::win::Vec2{ 300, 0 }, tk::win::Vec2{ 10,10 }, };
 }
 MyWindow::~MyWindow() {}
 
@@ -25,6 +27,30 @@ bool MyWindow::IntersectBox(RECT r1, RECT r2) {
 void MyWindow::OnKeyDown(UINT key) {
 	if (key == VK_ESCAPE) {
 		m_sm.SetState(new tk::states::MenuState());
+	}
+	switch (m_sm.GetState()) {
+	case tk::GAME_STATE::GAME_RUNNING:
+	{
+		ply.OnKeyDown(key);
+		break;
+	}
+	case tk::GAME_STATE::MENU: break;
+	case tk::GAME_STATE::OPTIONS: break;
+	case tk::GAME_STATE::CLOSING: break;
+	default: break;
+	}
+}
+void MyWindow::OnKeyUp(UINT key) {
+	switch (m_sm.GetState()) {
+	case tk::GAME_STATE::GAME_RUNNING:
+	{
+		ply.OnKeyUp(key);
+		break;
+	}
+	case tk::GAME_STATE::MENU: break;
+	case tk::GAME_STATE::OPTIONS: break;
+	case tk::GAME_STATE::CLOSING: break;
+	default: break;
 	}
 }
 
@@ -65,7 +91,12 @@ void MyWindow::OnPaint(HDC hdc) {
 }
 
 void MyWindow::Update(double deltaTime) {
-	if (m_sm.GetState() == tk::GAME_STATE::MENU) {
+	switch (m_sm.GetState()) {
+	case tk::GAME_STATE::GAME_RUNNING:
+		ply.Update(deltaTime, ScreenRectWidth(), ScreenRectHeight());
+		TK_UPDATE_RECT(hwnd(), &ply.rect().area().convertRECT());
+		break;
+	case tk::GAME_STATE::MENU:
 		m_title_rect = { 0, 50, ScreenRectWidth(), 60 };
 		m_exit_rect = { 0, 400, ScreenRectWidth(), 60 };
 		m_start_rect = { 0, 200, ScreenRectWidth(), 60 };
@@ -74,11 +105,19 @@ void MyWindow::Update(double deltaTime) {
 		TK_UPDATE_RECT(hwnd(), &m_start_rect);
 		TK_UPDATE_RECT(hwnd(), &m_title_rect);
 		TK_UPDATE_RECT(hwnd(), &m_options_rect);
-	}
-	TK_UPDATE_RECT(hwnd(), &development_rect);
+		break;
+	case tk::GAME_STATE::OPTIONS: break;
+	case tk::GAME_STATE::CLOSING: break;
+	default: break;
+	} TK_UPDATE_RECT(hwnd(), &development_rect);
 }
+
 void MyWindow::OnWindowResize() {
-	if (m_sm.GetState() == tk::GAME_STATE::MENU) {
+	switch (m_sm.GetState()) {
+	case tk::GAME_STATE::GAME_RUNNING:
+		TK_UPDATE_RECT(hwnd(), &ply.rect().area().convertRECT());
+		break;
+	case tk::GAME_STATE::MENU:
 		m_title_rect = { 0, 50, ScreenRectWidth(), 60 };
 		m_exit_rect = { 0, 400, ScreenRectWidth(), 60 };
 		m_start_rect = { 0, 200, ScreenRectWidth(), 60 };
@@ -87,6 +126,10 @@ void MyWindow::OnWindowResize() {
 		TK_UPDATE_RECT(hwnd(), &m_start_rect);
 		TK_UPDATE_RECT(hwnd(), &m_title_rect);
 		TK_UPDATE_RECT(hwnd(), &m_options_rect);
+		break;
+	case tk::GAME_STATE::OPTIONS: break;
+	case tk::GAME_STATE::CLOSING: break;
+	default: break;
 	}
 }
 
@@ -109,9 +152,21 @@ void MyWindow::Menu(HDC hdc) {
 }
 
 void MyWindow::Options(HDC hdc) {
+	SelectObject(hdc, TK_BRUSH_WHITE);
+
+	tri.DrawTri(hdc);
+
 
 }
 
 void MyWindow::Game(HDC hdc) {
+	ply.Draw(hdc);
 
+	tk::String k = "";
+	k += (tk::String)"   x: " + ply.rect().x;
+	k += (tk::String)"   y: " + ply.rect().y;
+	k += (tk::String)"   w: " + ply.rect().width;
+	k += (tk::String)"   h: " + ply.rect().height;
+
+	TextOut(hdc, 10, 10, k.data, k.length());
 }

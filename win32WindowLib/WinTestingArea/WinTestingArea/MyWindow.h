@@ -1,6 +1,7 @@
 #pragma once
 #include "tkWindow.h"
 #include "tkLinkList.h"
+#include "Player.h"
 
 class MyWindow : public tk::win::Window {
 public:
@@ -10,6 +11,7 @@ public:
 	bool IntersectBox(RECT r1, RECT r2);
 
 	virtual void OnKeyDown(UINT key);
+	virtual void OnKeyUp(UINT key);
 	virtual void OnMouseDown(int x, int y, UINT param);
 	virtual void OnPaint(HDC hdc);
 
@@ -25,15 +27,16 @@ private:
 	tk::win::WinText m_development_text;
 	RECT development_rect;
 
-	/* ---- PRIVATE VARIABLES ---- */
-	
+	tk::win::Triangle tri;
+	tk::win::Triangle tri2;
 
+	/* ---- PRIVATE VARIABLES ---- */
 	// Title Text
 	RECT m_title_rect;
 	tk::String m_title_string;
 	tk::win::WinText m_title;
 
-	// Title Text
+	// Start Text
 	RECT m_start_rect;
 	tk::String m_start_string;
 	tk::win::WinText m_start;
@@ -48,5 +51,7 @@ private:
 	tk::String m_exit_string;
 	tk::win::WinText m_exit;
 
-};
+	/* ---- Game Stuff ---- */
+	Player ply;
 
+};

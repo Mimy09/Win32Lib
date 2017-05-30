@@ -36,6 +36,12 @@
     <ClCompile Include="MyWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tkWinObject.cpp">
+      <Filter>Source Files\ToolKit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tkWindow.h">
@@ -58,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="tkWinObjects.h">
       <Filter>Source Files\ToolKit</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

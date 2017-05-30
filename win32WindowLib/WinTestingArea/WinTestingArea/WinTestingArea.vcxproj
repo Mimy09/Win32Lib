@@ -153,12 +153,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MyWindow.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="tkStateManager.cpp" />
     <ClCompile Include="tkTimer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="tkWindow.cpp" />
+    <ClCompile Include="tkWinObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Player.h" />
     <ClInclude Include="tkLinkList.h" />
     <ClInclude Include="tkState.h" />
     <ClInclude Include="tkStateManager.h" />

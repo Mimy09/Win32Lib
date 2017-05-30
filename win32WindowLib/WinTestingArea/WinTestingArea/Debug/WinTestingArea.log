@@ -1,3 +1,8 @@
-﻿  MyWindow.cpp
-  WinTestingArea.vcxproj -> D:\ProgramFiles\Programming\_GIT\Win32Lib\win32WindowLib\WinTestingArea\Debug\WinTestingArea.exe
-  WinTestingArea.vcxproj -> D:\ProgramFiles\Programming\_GIT\Win32Lib\win32WindowLib\WinTestingArea\Debug\WinTestingArea.pdb (Full PDB)
+﻿  tkWinObject.cpp
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(167): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(169): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(170): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(183): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(185): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(186): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  WinTestingArea.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\Debug\WinTestingArea.exe

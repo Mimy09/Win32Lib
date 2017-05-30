@@ -7,9 +7,7 @@ int main() {
 		wnd.Show();
 
 
-		while (wnd.Run() != TK_MSG_EXIT) {
-
-		}
+		while (wnd.Run() != TK_MSG_EXIT) { }
 
 		return 0;
 	}
