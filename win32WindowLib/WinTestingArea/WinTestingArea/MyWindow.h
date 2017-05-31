@@ -1,6 +1,8 @@
 #pragma once
-#include "tkWindow.h"
-#include "tkLinkList.h"
+#include <tkWindow.h>
+#include <tkLinkList.h>
+#include "tkStateManager.h"
+#include "tkGraphics.h"
 #include "Player.h"
 
 class MyWindow : public tk::win::Window {
@@ -23,12 +25,14 @@ public:
 	void Game(HDC hdc);
 
 private:
+	tk::states::StateManager m_sm;
+
 	/* -- DEV VAR -- */
 	tk::win::WinText m_development_text;
 	RECT development_rect;
 
-	tk::win::Triangle tri;
-	tk::win::Triangle tri2;
+	tk::graphics::Triangle tri;
+	tk::graphics::Triangle tri2;
 
 	/* ---- PRIVATE VARIABLES ---- */
 	// Title Text

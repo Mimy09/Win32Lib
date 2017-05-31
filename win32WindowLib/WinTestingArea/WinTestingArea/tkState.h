@@ -1,38 +1,33 @@
 #pragma once
 
-/****************************************************************************************************
-*****************************************************************************************************/
 namespace tk {
-	enum class GAME_STATE {
-		INIT,
-		MENU,
-		OPTIONS,
-		GAME_RUNNING,
-		IDLE,
-		CLOSING
-	};
-
-	class State {
-	public:
-		State() {}
-		virtual ~State() = 0{}
-		virtual void OnEnter() {}
-		virtual void OnUpdate() {}
-		virtual void OnExit() {}
-
-		virtual GAME_STATE GetState() = 0;
-
-	protected:
-		int ID;
-	};
-}
-/****************************************************************************************************
-*****************************************************************************************************/
-
-
-namespace tk {
-	
 	namespace states {
+		enum class GAME_STATE {
+			INIT,
+			MENU,
+			OPTIONS,
+			GAME_RUNNING,
+			IDLE,
+			CLOSING
+		};
+
+		class State {
+		public:
+			State() {}
+			virtual ~State() = 0 {}
+			virtual void OnEnter() {}
+			virtual void OnUpdate() {}
+			virtual void OnExit() {}
+
+			virtual GAME_STATE GetState() = 0;
+
+		protected:
+			int ID;
+		};
+
+		/************************************************************************************************************************
+		************************************************************************************************************************/
+
 		/* ---- INIT ---- */
 		class InitState : public State {
 		public:

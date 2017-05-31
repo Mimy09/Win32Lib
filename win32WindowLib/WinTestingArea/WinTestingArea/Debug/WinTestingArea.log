@@ -1,8 +1,17 @@
-﻿  tkWinObject.cpp
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(167): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(169): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(170): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(183): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(185): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkwinobject.cpp(186): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+  Main.cpp
+  MyWindow.cpp
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp(100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Player.cpp
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\player.cpp(13): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  tkGraphics.cpp
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkgraphics.cpp(50): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkgraphics.cpp(52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkgraphics.cpp(53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkgraphics.cpp(66): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkgraphics.cpp(68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkgraphics.cpp(69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  tkMath.cpp
+  tkStateManager.cpp
+  Generating Code...
   WinTestingArea.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\Debug\WinTestingArea.exe

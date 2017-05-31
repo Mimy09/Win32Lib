@@ -19,16 +19,16 @@
     <Filter Include="Source Files\ToolKit\GameState">
       <UniqueIdentifier>{ca3584fe-72b3-48ad-a556-d486b2959800}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ToolKit\Math">
+      <UniqueIdentifier>{b5c5abae-122d-48a5-9298-68badd8a1daf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ToolKit\Graphics">
+      <UniqueIdentifier>{3ec49922-547a-48e4-ba07-fb62c4371287}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tkWindow.cpp">
-      <Filter>Source Files\ToolKit</Filter>
-    </ClCompile>
-    <ClCompile Include="tkTimer.cpp">
-      <Filter>Source Files\ToolKit</Filter>
     </ClCompile>
     <ClCompile Include="tkStateManager.cpp">
       <Filter>Source Files\ToolKit\GameState</Filter>
@@ -39,22 +39,16 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tkWinObject.cpp">
-      <Filter>Source Files\ToolKit</Filter>
+    <ClCompile Include="tkMath.cpp">
+      <Filter>Source Files\ToolKit\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="tkGraphics.cpp">
+      <Filter>Source Files\ToolKit\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tkWindow.h">
-      <Filter>Source Files\ToolKit</Filter>
-    </ClInclude>
     <ClInclude Include="MyWindow.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tkTimer.h">
-      <Filter>Source Files\ToolKit</Filter>
-    </ClInclude>
-    <ClInclude Include="tkLinkList.h">
-      <Filter>Source Files\ToolKit</Filter>
     </ClInclude>
     <ClInclude Include="tkState.h">
       <Filter>Source Files\ToolKit\GameState</Filter>
@@ -62,11 +56,14 @@
     <ClInclude Include="tkStateManager.h">
       <Filter>Source Files\ToolKit\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="tkWinObjects.h">
-      <Filter>Source Files\ToolKit</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tkMath.h">
+      <Filter>Source Files\ToolKit\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="tkGraphics.h">
+      <Filter>Source Files\ToolKit\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

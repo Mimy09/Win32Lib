@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
-#include "tkWindow.h"
+#include <tkWindow.h>
+#include "tkGraphics.h"
 
 class Player {
 public:
@@ -13,8 +14,8 @@ public:
 	void OnKeyUp(UINT key);
 	void OnKeyDown(UINT key);
 
-	inline tk::win::Rect rect() { return ply_rect; }
+	inline tk::graphics::Rect rect() { return ply_rect; }
 private:
-	tk::win::Rect ply_rect;
+	tk::graphics::Rect ply_rect;
 	bool ply_forward, ply_back, ply_left, ply_right;
 };

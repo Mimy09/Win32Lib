@@ -1,6 +1,8 @@
 #include "MyWindow.h"
 
 MyWindow::MyWindow() {
+	m_sm.SetState(new tk::states::MenuState());
+
 	m_title_string = "BULLET HELL";
 	m_start_string = "START";
 	m_options_string = "OPTIONS";
@@ -11,7 +13,8 @@ MyWindow::MyWindow() {
 	m_options.SetFont(46);
 	m_exit.SetFont(46);
 
-	tri = { tk::win::Vec2{300, 300}, tk::win::Vec2{ 300, 0 }, tk::win::Vec2{ 10,10 }, };
+	tri = { tk::math::Vec2{10, 10}, tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10,200 }, };
+	tri2 = { tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10, 200 }, tk::math::Vec2{ 200, 200 } };
 }
 MyWindow::~MyWindow() {}
 
@@ -29,33 +32,33 @@ void MyWindow::OnKeyDown(UINT key) {
 		m_sm.SetState(new tk::states::MenuState());
 	}
 	switch (m_sm.GetState()) {
-	case tk::GAME_STATE::GAME_RUNNING:
+	case tk::states::GAME_STATE::GAME_RUNNING:
 	{
 		ply.OnKeyDown(key);
 		break;
 	}
-	case tk::GAME_STATE::MENU: break;
-	case tk::GAME_STATE::OPTIONS: break;
-	case tk::GAME_STATE::CLOSING: break;
+	case tk::states::GAME_STATE::MENU: break;
+	case tk::states::GAME_STATE::OPTIONS: break;
+	case tk::states::GAME_STATE::CLOSING: break;
 	default: break;
 	}
 }
 void MyWindow::OnKeyUp(UINT key) {
 	switch (m_sm.GetState()) {
-	case tk::GAME_STATE::GAME_RUNNING:
+	case tk::states::GAME_STATE::GAME_RUNNING:
 	{
 		ply.OnKeyUp(key);
 		break;
 	}
-	case tk::GAME_STATE::MENU: break;
-	case tk::GAME_STATE::OPTIONS: break;
-	case tk::GAME_STATE::CLOSING: break;
+	case tk::states::GAME_STATE::MENU: break;
+	case tk::states::GAME_STATE::OPTIONS: break;
+	case tk::states::GAME_STATE::CLOSING: break;
 	default: break;
 	}
 }
 
 void MyWindow::OnMouseDown(int x, int y, UINT param) {
-	if (m_sm.GetState() == tk::GAME_STATE::MENU) {
+	if (m_sm.GetState() == tk::states::GAME_STATE::MENU) {
 		RECT mousePos = { x - 1, y - 1, x + 1, y + 1 };
 		if (IntersectBox(mousePos, m_start_rect)) {
 			m_sm.SetState(new tk::states::GameRunningState());
@@ -75,10 +78,10 @@ void MyWindow::OnPaint(HDC hdc) {
 	SelectObject(hdc, TK_BRUSH_WHITE);
 
 	switch (m_sm.GetState()) {
-	case tk::GAME_STATE::GAME_RUNNING: Game(hdc); break;
-	case tk::GAME_STATE::MENU: Menu(hdc); break;
-	case tk::GAME_STATE::OPTIONS: Options(hdc); break;
-	case tk::GAME_STATE::CLOSING: break;
+	case tk::states::GAME_STATE::GAME_RUNNING: Game(hdc); break;
+	case tk::states::GAME_STATE::MENU: Menu(hdc); break;
+	case tk::states::GAME_STATE::OPTIONS: Options(hdc); break;
+	case tk::states::GAME_STATE::CLOSING: break;
 	default: break;
 	}
 
@@ -91,12 +94,13 @@ void MyWindow::OnPaint(HDC hdc) {
 }
 
 void MyWindow::Update(double deltaTime) {
+	m_sm.Update();
 	switch (m_sm.GetState()) {
-	case tk::GAME_STATE::GAME_RUNNING:
+	case tk::states::GAME_STATE::GAME_RUNNING:
 		ply.Update(deltaTime, ScreenRectWidth(), ScreenRectHeight());
 		TK_UPDATE_RECT(hwnd(), &ply.rect().area().convertRECT());
 		break;
-	case tk::GAME_STATE::MENU:
+	case tk::states::GAME_STATE::MENU:
 		m_title_rect = { 0, 50, ScreenRectWidth(), 60 };
 		m_exit_rect = { 0, 400, ScreenRectWidth(), 60 };
 		m_start_rect = { 0, 200, ScreenRectWidth(), 60 };
@@ -106,18 +110,18 @@ void MyWindow::Update(double deltaTime) {
 		TK_UPDATE_RECT(hwnd(), &m_title_rect);
 		TK_UPDATE_RECT(hwnd(), &m_options_rect);
 		break;
-	case tk::GAME_STATE::OPTIONS: break;
-	case tk::GAME_STATE::CLOSING: break;
+	case tk::states::GAME_STATE::OPTIONS: break;
+	case tk::states::GAME_STATE::CLOSING: break;
 	default: break;
 	} TK_UPDATE_RECT(hwnd(), &development_rect);
 }
 
 void MyWindow::OnWindowResize() {
 	switch (m_sm.GetState()) {
-	case tk::GAME_STATE::GAME_RUNNING:
+	case tk::states::GAME_STATE::GAME_RUNNING:
 		TK_UPDATE_RECT(hwnd(), &ply.rect().area().convertRECT());
 		break;
-	case tk::GAME_STATE::MENU:
+	case tk::states::GAME_STATE::MENU:
 		m_title_rect = { 0, 50, ScreenRectWidth(), 60 };
 		m_exit_rect = { 0, 400, ScreenRectWidth(), 60 };
 		m_start_rect = { 0, 200, ScreenRectWidth(), 60 };
@@ -127,8 +131,8 @@ void MyWindow::OnWindowResize() {
 		TK_UPDATE_RECT(hwnd(), &m_title_rect);
 		TK_UPDATE_RECT(hwnd(), &m_options_rect);
 		break;
-	case tk::GAME_STATE::OPTIONS: break;
-	case tk::GAME_STATE::CLOSING: break;
+	case tk::states::GAME_STATE::OPTIONS: break;
+	case tk::states::GAME_STATE::CLOSING: break;
 	default: break;
 	}
 }
@@ -155,7 +159,7 @@ void MyWindow::Options(HDC hdc) {
 	SelectObject(hdc, TK_BRUSH_WHITE);
 
 	tri.DrawTri(hdc);
-
+	tri2.DrawTri(hdc);
 
 }
 

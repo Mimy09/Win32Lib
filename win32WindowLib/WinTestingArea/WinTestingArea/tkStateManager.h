@@ -2,16 +2,20 @@
 #include "tkState.h"
 
 namespace tk {
-	class StateManager {
-	public:
-		StateManager();
-		~StateManager();
+	namespace states {
+		
 
-		void SetState(tk::State* state);
-		inline GAME_STATE GetState() { return m_currentState->GetState(); }
-		inline void Update() { m_currentState->OnUpdate(); }
+		class StateManager {
+		public:
+			StateManager();
+			~StateManager();
 
-	private:
-		tk::State* m_currentState;
-	};
+			void SetState(State* state);
+			inline GAME_STATE GetState() { return m_currentState->GetState(); }
+			inline void Update() { m_currentState->OnUpdate(); }
+
+		private:
+			State* m_currentState;
+		};
+	}
 }

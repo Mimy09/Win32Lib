@@ -28,6 +28,17 @@ namespace tk {
 				} fclose(m_file);
 				m_file = fopen(m_path.data, "r+b");
 				break;
+			case tk::IO::ReadOnlyBinary:
+				m_file = fopen(m_path.data, "r");
+				break;
+			case tk::IO::ReadWriteBinary:
+				m_file = fopen(m_path.data, "r");
+				if (m_file == NULL) {
+					fclose(m_file);
+					m_file = fopen(m_path.data, "w");
+				} fclose(m_file);
+				m_file = fopen(m_path.data, "r+");
+				break;
 			case tk::IO::Empty:
 				m_file = fopen(m_path.data, "wb");
 				break;
@@ -45,13 +56,6 @@ namespace tk {
 		template<typename T> void Write(T data) {
 			if (fseek(m_file, 0, SEEK_END) != 0) TK_EXCEPTION("Seek error");
 			if (fwrite((char*)&data, sizeof(T), 1, m_file) != 1) TK_EXCEPTION("Write error");
-		}
-		template<> void Write<const char*>(const char* data) {
-			if (fseek(m_file, 0, SEEK_END) != 0) TK_EXCEPTION("Seek error");
-			int len = strlen(data);
-			if (fwrite(&len, sizeof(len), 1, m_file) != 1) TK_EXCEPTION("Write error");
-
-			if (fwrite(data, sizeof(char) * len, 1, m_file) != 1) TK_EXCEPTION("Write error");
 		}
 		template<typename T> void Write(T data, int Offset) {
 			if (fseek(m_file, Offset, SEEK_SET) != 0) TK_EXCEPTION("Seek error");
