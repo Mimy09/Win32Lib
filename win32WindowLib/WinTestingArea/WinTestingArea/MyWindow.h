@@ -31,8 +31,10 @@ private:
 	tk::win::WinText m_development_text;
 	RECT development_rect;
 
-	tk::graphics::Triangle tri;
-	tk::graphics::Triangle tri2;
+	//tk::graphics::gTriangle tri;
+	//tk::graphics::gTriangle tri2;
+
+	tk::graphics::gRectange rect_1;
 
 	/* ---- PRIVATE VARIABLES ---- */
 	// Title Text

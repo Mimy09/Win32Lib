@@ -115,9 +115,42 @@ namespace tk {
 			return m;
 		}
 		
+		/************************************************************************************************************************
+		************************************************************************************************************************/
+
 		Vec3 operator*(Vec3 index) {
 			return Vec3();
 		}
 
-	}
+		float* Vec2::operator[](int index) {
+			switch (index) {
+			case 0: return &x;
+			case 1: return &y;
+			default:
+				return nullptr;
+			}
+		}
+
+		float* Vec3::operator[](int index) {
+			switch (index) {
+			case 0: return &x;
+			case 1: return &y;
+			case 2: return &z;
+			default:
+				return NULL;
+			}
+		}
+
+		float* Vec4::operator[](int index) {
+			switch (index) {
+			case 0: return &x;
+			case 1: return &y;
+			case 2: return &z;
+			case 3: return &w;
+			default:
+				return NULL;
+			}
+		}
+
+}
 }

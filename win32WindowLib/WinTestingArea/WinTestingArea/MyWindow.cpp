@@ -13,8 +13,15 @@ MyWindow::MyWindow() {
 	m_options.SetFont(46);
 	m_exit.SetFont(46);
 
-	tri = { tk::math::Vec2{10, 10}, tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10,200 }, };
-	tri2 = { tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10, 200 }, tk::math::Vec2{ 200, 200 } };
+	//tri = { tk::math::Vec2{10, 10}, tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10,200 } };
+	//tri2 = { tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10, 200 }, tk::math::Vec2{ 200, 200 } };
+
+	rect_1 = {
+		tk::math::Vec2{ 10, 10 },
+		tk::math::Vec2{ 200, 10 },
+		tk::math::Vec2{ 200, 200 },
+		tk::math::Vec2{ 10, 200 }
+	};
 }
 MyWindow::~MyWindow() {}
 
@@ -158,9 +165,9 @@ void MyWindow::Menu(HDC hdc) {
 void MyWindow::Options(HDC hdc) {
 	SelectObject(hdc, TK_BRUSH_WHITE);
 
-	tri.DrawTri(hdc);
-	tri2.DrawTri(hdc);
-
+	//tri.Draw(hdc);
+	//tri2.Draw(hdc);
+	rect_1.Draw(hdc);
 }
 
 void MyWindow::Game(HDC hdc) {
@@ -169,8 +176,8 @@ void MyWindow::Game(HDC hdc) {
 	tk::String k = "";
 	k += (tk::String)"   x: " + ply.rect().x;
 	k += (tk::String)"   y: " + ply.rect().y;
-	k += (tk::String)"   w: " + ply.rect().width;
-	k += (tk::String)"   h: " + ply.rect().height;
+	k += (tk::String)"   Y_vel: " + ply.m_vel_y;
+	k += (tk::String)"   X_vel: " + ply.m_vel_x;
 
 	TextOut(hdc, 10, 10, k.data, k.length());
 }

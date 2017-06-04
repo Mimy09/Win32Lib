@@ -11,7 +11,8 @@ namespace tk {
 
 		/************************************************************************************************************************
 		************************************************************************************************************************/
-		Triangle::Triangle(math::Vec2 v1, math::Vec2 v2, math::Vec2 v3) {
+
+		gTriangle::gTriangle(math::Vec2 v1, math::Vec2 v2, math::Vec2 v3) {
 			m_vertex[0] = v1;
 			m_vertex[1] = v2;
 			m_vertex[2] = v3;
@@ -33,22 +34,19 @@ namespace tk {
 
 			hPen = CreatePen(PS_SOLID, 1, RGB(255, 255, 255));
 		}
-		void Triangle::DrawTri(HDC hdc) {
+		void gTriangle::Draw(HDC hdc) {
 			SelectObject(hdc, hPen);
 
 			fillBottomFlatTriangle(hdc, m_vertex[0], m_vertex[1], m_vert4);
 			fillTopFlatTriangle(hdc, m_vertex[1], m_vert4, m_vertex[2]);
 		}
 
-		void Triangle::fillBottomFlatTriangle(HDC hdc, math::Vec2 v1, math::Vec2 v2, math::Vec2 v3) {
-			float invslope1 = (v2.x - v1.x) / (v2.y - v1.y);
-			float invslope2 = (v3.x - v1.x) / (v3.y - v1.y);
-
-			float curx1 = v1.x;
-			float curx2 = v1.x;
+		void gTriangle::fillBottomFlatTriangle(HDC hdc, math::Vec2 v1, math::Vec2 v2, math::Vec2 v3) {
+			invslope1 = (v2.x - v1.x) / (v2.y - v1.y);
+			invslope2 = (v3.x - v1.x) / (v3.y - v1.y);
+			curx1 = curx2 = v1.x;
 
 			for (int scanlineY = v1.y; scanlineY < v2.y; scanlineY++) {
-
 				MoveToEx(hdc, curx1, scanlineY, NULL);
 				LineTo(hdc, curx2, scanlineY);
 
@@ -56,21 +54,44 @@ namespace tk {
 				curx2 += invslope2;
 			}
 		}
-		void Triangle::fillTopFlatTriangle(HDC hdc, math::Vec2 v1, math::Vec2 v2, math::Vec2 v3) {
-			float invslope1 = (v3.x - v1.x) / (v3.y - v1.y);
-			float invslope2 = (v3.x - v2.x) / (v3.y - v2.y);
-
-			float curx1 = v3.x;
-			float curx2 = v3.x;
+		void gTriangle::fillTopFlatTriangle(HDC hdc, math::Vec2 v1, math::Vec2 v2, math::Vec2 v3) {
+			invslope1 = (v3.x - v1.x) / (v3.y - v1.y);
+			invslope2 = (v3.x - v2.x) / (v3.y - v2.y);
+			curx1 = curx2 = v3.x;
 
 			for (int scanlineY = v3.y; scanlineY > v1.y; scanlineY--) {
-
 				MoveToEx(hdc, curx1, scanlineY, NULL);
 				LineTo(hdc, curx2, scanlineY);
 
 				curx1 -= invslope1;
 				curx2 -= invslope2;
 			}
+		}
+
+		/************************************************************************************************************************
+		************************************************************************************************************************/
+
+		gRectange::gRectange(math::Vec2 v1, math::Vec2 v2, math::Vec2 v3, math::Vec2 v4) {
+
+			tri_0 = {
+				tk::math::Vec2{ v1.x, v1.y },
+				tk::math::Vec2{ v2.x, v2.y },
+				tk::math::Vec2{ v3.x, v3.y }
+			};
+
+			tri_1 = {
+				tk::math::Vec2{ v1.x, v1.y },
+				tk::math::Vec2{ v4.x, v4.y },
+				tk::math::Vec2{ v3.x, v3.y }
+			};
+
+			hPen = CreatePen(PS_SOLID, 1, RGB(255, 255, 255));
+		}
+
+		void gRectange::Draw(HDC hdc) {
+			SelectObject(hdc, hPen);
+			tri_0.Draw(hdc);
+			tri_1.Draw(hdc);
 		}
 
 		/************************************************************************************************************************
