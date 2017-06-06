@@ -3,6 +3,7 @@
 #include <tkLinkList.h>
 #include "tkStateManager.h"
 #include "tkGraphics.h"
+#include "tkTree.h"
 #include "Player.h"
 
 class MyWindow : public tk::win::Window {
@@ -59,5 +60,13 @@ private:
 
 	/* ---- Game Stuff ---- */
 	Player ply;
+	tk::math::Mat3 mat;
+	tk::math::Vec3 v1;
+	tk::math::Vec3 v2;
+	tk::math::Vec3 v3;
+	tk::math::Vec3 v4;
 
+	/* ---- TESTING ---- */
+
+	tk::std::Tree<int> testTree;
 };

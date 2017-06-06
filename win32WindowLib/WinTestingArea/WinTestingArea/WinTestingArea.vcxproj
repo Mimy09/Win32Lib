@@ -166,9 +166,7 @@
     <ClInclude Include="tkState.h" />
     <ClInclude Include="tkStateManager.h" />
     <ClInclude Include="MyWindow.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClInclude Include="tkTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

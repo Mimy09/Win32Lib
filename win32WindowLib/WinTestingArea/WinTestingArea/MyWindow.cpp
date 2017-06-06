@@ -16,12 +16,17 @@ MyWindow::MyWindow() {
 	//tri = { tk::math::Vec2{10, 10}, tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10,200 } };
 	//tri2 = { tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10, 200 }, tk::math::Vec2{ 200, 200 } };
 
-	rect_1 = {
-		tk::math::Vec2{ 10, 10 },
-		tk::math::Vec2{ 200, 10 },
-		tk::math::Vec2{ 200, 200 },
-		tk::math::Vec2{ 10, 200 }
-	};
+	testTree.Insert(1);
+	testTree.Insert(2);
+	testTree.Insert(3);
+	testTree.Insert(4);
+	testTree.Insert(5);
+	testTree.Insert(6);
+	testTree.Insert(7);
+
+	testTree.DeleteNode(3);
+	testTree.DeleteNode(4);
+
 }
 MyWindow::~MyWindow() {}
 
@@ -117,7 +122,22 @@ void MyWindow::Update(double deltaTime) {
 		TK_UPDATE_RECT(hwnd(), &m_title_rect);
 		TK_UPDATE_RECT(hwnd(), &m_options_rect);
 		break;
-	case tk::states::GAME_STATE::OPTIONS: break;
+	case tk::states::GAME_STATE::OPTIONS:
+	{
+		/*v1 = mat * tk::math::Vec3{ -100, -100, 1 };
+		v2 = mat * tk::math::Vec3{ 100, -100, 1 };
+		v3 = mat * tk::math::Vec3{ 100,  100, 1 };
+		v4 = mat * tk::math::Vec3{ -100,  100, 1 };
+
+		mat.SetRotateZ(m_timer.elapsed() / 10);
+		rect_1 = {
+			tk::math::Vec2{ v1.x + ScreenRectWidth() / 2, v1.y + ScreenRectHeight() / 2 },
+			tk::math::Vec2{ v2.x + ScreenRectWidth() / 2, v2.y + ScreenRectHeight() / 2 },
+			tk::math::Vec2{ v3.x + ScreenRectWidth() / 2, v3.y + ScreenRectHeight() / 2 },
+			tk::math::Vec2{ v4.x + ScreenRectWidth() / 2, v4.y + ScreenRectHeight() / 2 }
+		};*/
+		break;
+	}
 	case tk::states::GAME_STATE::CLOSING: break;
 	default: break;
 	} TK_UPDATE_RECT(hwnd(), &development_rect);
@@ -164,9 +184,6 @@ void MyWindow::Menu(HDC hdc) {
 
 void MyWindow::Options(HDC hdc) {
 	SelectObject(hdc, TK_BRUSH_WHITE);
-
-	//tri.Draw(hdc);
-	//tri2.Draw(hdc);
 	rect_1.Draw(hdc);
 }
 
@@ -178,6 +195,5 @@ void MyWindow::Game(HDC hdc) {
 	k += (tk::String)"   y: " + ply.rect().y;
 	k += (tk::String)"   Y_vel: " + ply.m_vel_y;
 	k += (tk::String)"   X_vel: " + ply.m_vel_x;
-
 	TextOut(hdc, 10, 10, k.data, k.length());
 }

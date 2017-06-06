@@ -27,18 +27,25 @@ namespace tk {
 					}
 				}
 			}
-			m_vert4 = {
-				(float)(m_vertex[0].x + ((float)(m_vertex[1].y - m_vertex[0].y) / (float)(m_vertex[2].y - m_vertex[0].y)) * (m_vertex[2].x - m_vertex[0].x)),
-				m_vertex[1].y
-			};
 
 			hPen = CreatePen(PS_SOLID, 1, RGB(255, 255, 255));
 		}
 		void gTriangle::Draw(HDC hdc) {
 			SelectObject(hdc, hPen);
-
-			fillBottomFlatTriangle(hdc, m_vertex[0], m_vertex[1], m_vert4);
-			fillTopFlatTriangle(hdc, m_vertex[1], m_vert4, m_vertex[2]);
+			if (m_vertex[1].y == m_vertex[2].y) {
+				fillBottomFlatTriangle(hdc, m_vertex[0], m_vertex[1], m_vertex[2]);
+			}
+			else if (m_vertex[0].y == m_vertex[1].y) {
+				fillTopFlatTriangle(hdc, m_vertex[0], m_vertex[1], m_vertex[2]);
+			}
+			else {
+				m_vert4 = {
+					(float)(m_vertex[0].x + ((float)(m_vertex[1].y - m_vertex[0].y) / (float)(m_vertex[2].y - m_vertex[0].y)) * (m_vertex[2].x - m_vertex[0].x)),
+					m_vertex[1].y
+				};
+				fillBottomFlatTriangle(hdc, m_vertex[0], m_vertex[1], m_vert4);
+				fillTopFlatTriangle(hdc, m_vertex[1], m_vert4, m_vertex[2]);
+			}
 		}
 
 		void gTriangle::fillBottomFlatTriangle(HDC hdc, math::Vec2 v1, math::Vec2 v2, math::Vec2 v3) {

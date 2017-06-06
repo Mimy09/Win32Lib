@@ -6,7 +6,8 @@ namespace tk {
 		/************************************************************************************************************************
 		************************************************************************************************************************/
 
-		struct Vec2 {
+		class Vec2 {
+		public:
 			Vec2() {}
 			Vec2(float posx, float posy) : x(posx), y(posy) { }
 			Vec2(float val) : x(val), y(val) { }
@@ -14,7 +15,8 @@ namespace tk {
 
 			float x, y;
 		};
-		struct Vec3 {
+		class Vec3 {
+		public:
 			Vec3() {}
 			Vec3(float posx, float posy, float posz) : x(posx), y(posy), z(posz) { }
 			Vec3(float val) : x(val), y(val), z(val) { }
@@ -22,7 +24,8 @@ namespace tk {
 
 			float x, y, z;
 		};
-		struct Vec4 {
+		class Vec4 {
+		public:
 			Vec4() {}
 			Vec4(float posx, float posy, float posz, float posw) : x(posx), y(posy), z(posz), w(posw) { }
 			Vec4(float val) : x(val), y(val), z(val), w(val) { }

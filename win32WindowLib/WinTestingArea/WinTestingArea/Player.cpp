@@ -1,14 +1,22 @@
 #include "Player.h"
 
-Player::Player(){
+Player::Player() {
 	ply_forward = ply_back = ply_left = ply_right = false;
 	ply_rect = { 200, 200, 30, 30 };
-	SetMovment(15.f, 15.f);
+
+	ply_gRect = {
+		tk::math::Vec2{ ply_rect.x, ply_rect.y },
+		tk::math::Vec2{ ply_rect.x + ply_rect.width, ply_rect.y },
+		tk::math::Vec2{ ply_rect.x + ply_rect.width, ply_rect.y + ply_rect.height },
+		tk::math::Vec2{ ply_rect.x, ply_rect.y + ply_rect.height }
+	};
+
+	SetMovment(30.f, 15.f);
 }
 Player::Player(float x, float y, float width, float height) {
 	ply_forward = ply_back = ply_left = ply_right = false;
 	ply_rect = { x, y, width, height };
-	SetMovment(15.f, 15.f);
+	SetMovment(30.f, 15.f);
 }
 Player::~Player() {}
 
@@ -19,10 +27,11 @@ void Player::SetMovment(float acceleration, float maxSpeed) {
 }
 
 void Player::Draw(HDC hdc) {
-	Rectangle(hdc, (int)ply_rect.x, (int)ply_rect.y, (int)ply_rect.area().width, (int)ply_rect.area().height);
+	ply_gRect.Draw(hdc);
+	//Rectangle(hdc, (int)ply_rect.x, (int)ply_rect.y, (int)ply_rect.area().width, (int)ply_rect.area().height);
 }
 
-void Player::Update(double deltaTime, float screenW, float screenH) {
+void Player::Update(double deltaTime, int screenW, int screenH) {
 	/* ---- Sharp control ---- */
 	/*if (ply_forward && ply_rect.y > 0) { ply_rect.y -= 500 * deltaTime; }
 	else if (ply_rect.y < 0){ ply_rect.y = 0; }
@@ -97,6 +106,13 @@ void Player::Update(double deltaTime, float screenW, float screenH) {
 		//if (ply_rect.x < 0) { ply_rect.x = screenW - ply_rect.width; }
 		//if (ply_rect.x > screenW - ply_rect.width) { ply_rect.x = 0; }
 	} ply_rect.x -= m_vel_x;
+
+	ply_gRect = {
+		tk::math::Vec2{ ply_rect.x, ply_rect.y },
+		tk::math::Vec2{ ply_rect.x + ply_rect.width, ply_rect.y },
+		tk::math::Vec2{ ply_rect.x + ply_rect.width, ply_rect.y + ply_rect.height },
+		tk::math::Vec2{ ply_rect.x, ply_rect.y + ply_rect.height }
+	};
 }
 
 void Player::OnKeyUp(UINT key) {

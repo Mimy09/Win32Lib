@@ -9,12 +9,12 @@ namespace tk {
 		
 		struct Rect {
 			Rect() {}
-			Rect(double posX, double posY, double posWidth, double posheight)
+			Rect(float posX, float posY, float posWidth, float posheight)
 				: x(posX), y(posY), width(posWidth), height(posheight) {
 			}
 			Rect area();
 			RECT convertRECT();
-			double x, y, width, height;
+			float x, y, width, height;
 		};
 
 		/************************************************************************************************************************

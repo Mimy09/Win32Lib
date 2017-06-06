@@ -65,8 +65,8 @@
     <ClInclude Include="tkGraphics.h">
       <Filter>Source Files\ToolKit\Graphics</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClInclude Include="tkTree.h">
+      <Filter>Source Files\ToolKit</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
