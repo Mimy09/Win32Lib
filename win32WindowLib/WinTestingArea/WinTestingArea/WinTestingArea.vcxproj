@@ -162,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="Player.h" />
     <ClInclude Include="tkGraphics.h" />
+    <ClInclude Include="tkHashMap.h" />
     <ClInclude Include="tkMath.h" />
     <ClInclude Include="tkState.h" />
     <ClInclude Include="tkStateManager.h" />

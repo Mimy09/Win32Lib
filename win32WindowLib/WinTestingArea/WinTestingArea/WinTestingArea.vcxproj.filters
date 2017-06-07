@@ -68,5 +68,8 @@
     <ClInclude Include="tkTree.h">
       <Filter>Source Files\ToolKit</Filter>
     </ClInclude>
+    <ClInclude Include="tkHashMap.h">
+      <Filter>Source Files\ToolKit</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

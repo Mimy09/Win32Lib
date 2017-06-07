@@ -22,6 +22,7 @@ namespace tk {
 
 		struct gTriangle {
 			gTriangle() {}
+			~gTriangle();
 			gTriangle(math::Vec2 v1, math::Vec2 v2, math::Vec2 v3);
 
 			void Draw(HDC hdc);
@@ -44,6 +45,7 @@ namespace tk {
 
 		struct gRectange {
 			gRectange() {}
+			~gRectange();
 			gRectange(math::Vec2 v1, math::Vec2 v2, math::Vec2 v3, math::Vec2 v4);
 
 			void Draw(HDC hdc);
