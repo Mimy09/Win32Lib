@@ -26,8 +26,8 @@ void Player::SetMovment(float acceleration, float maxSpeed) {
 	m_vel_x = m_vel_y = 0;
 }
 
-void Player::Draw(HDC hdc) {
-	ply_gRect.Draw(hdc);
+void Player::Draw(HDC hdc, HPEN color) {
+	ply_gRect.Draw(hdc, color);
 	//Rectangle(hdc, (int)ply_rect.x, (int)ply_rect.y, (int)ply_rect.area().width, (int)ply_rect.area().height);
 }
 

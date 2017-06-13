@@ -30,6 +30,12 @@
 #define TK_BRUSH_GREEN *m_brushPool.ReturnObject(3)
 #define TK_BRUSH_BLUE *m_brushPool.ReturnObject(4)
 
+#define TK_PEN_BLACK *m_penPool.ReturnObject(0)
+#define TK_PEN_WHITE *m_penPool.ReturnObject(1)
+#define TK_PEN_RED *m_penPool.ReturnObject(2)
+#define TK_PEN_GREEN *m_penPool.ReturnObject(3)
+#define TK_PEN_BLUE *m_penPool.ReturnObject(4)
+
 namespace tk {
 	namespace win {
 		class Window {
@@ -88,6 +94,10 @@ namespace tk {
 			#param deltaTime - The delta time of the app*/
 			virtual void Update(double deltaTime);
 
+			/* ---- RunWindow ----
+			Runs the update loop for the window*/
+			virtual void RunWindow();
+
 			/* ---- ScreenRectWidth ----
 			Gets the Screen width
 			#return int - Returns the screen width*/
@@ -110,7 +120,7 @@ namespace tk {
 			Updates the prevTime of the deltaTime */
 			inline void UpdateTime() { prevTime = m_timer.elapsed(); }
 
-
+			void MessageSend(tk::String winClass, tk::String winName, UINT msg, ULONG dataMsg);
 		protected:
 			//##################################//
 			// POLYMOPHIC FUNCTIONS
@@ -138,7 +148,11 @@ namespace tk {
 			Called when the WM_PAINT message is dispatched
 			#param hdc - The device context*/
 			virtual void OnPaint(HDC hdc) {}
-
+			
+			/* ---- OnMessage ----
+			Called when reciving a message
+			#param param - The messgage that was recieved*/
+			virtual void OnMessage( UINT message, ULONG dataMsg) {}
 			
 			// ---- MOUSE EVENTS ----
 			virtual void OnMouseDown(int x, int y, UINT param) {}
@@ -164,9 +178,9 @@ namespace tk {
 			virtual void OnWindowStopMoving(){}
 			virtual void OnWindowResize(){}
 
+			tk::ObjectPool<HPEN> m_penPool;
 			tk::ObjectPool<HBRUSH> m_brushPool;
 			tk::String m_version;
-			
 			tk::Timer m_timer;
 
 		private:
@@ -174,6 +188,7 @@ namespace tk {
 			RECT m_rc;
 			HWND m_hwnd;
 			WNDCLASSEX m_wc;
+			COPYDATASTRUCT pcds;
 
 			tk::IO m_versionFile;
 

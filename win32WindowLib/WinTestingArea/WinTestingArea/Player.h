@@ -9,7 +9,7 @@ public:
 	Player(float x, float y, float width, float height);
 	~Player();
 
-	void Draw(HDC hdc);
+	void Draw(HDC hdc, HPEN color);
 	void Update(double deltaTime, int screenW, int screenH);
 	void OnKeyUp(UINT key);
 	void OnKeyDown(UINT key);

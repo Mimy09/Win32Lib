@@ -13,20 +13,15 @@ MyWindow::MyWindow() {
 	m_options.SetFont(46);
 	m_exit.SetFont(46);
 
+	hm.Put("Hello", 10);
+	hm.Put("Hello1", 11);
+	hm.Put("Hello2", 12);
+	hm.Put("Hello3", 13);
+
+	int lll = hm.Get("hello1");
+
 	//tri = { tk::math::Vec2{10, 10}, tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10,200 } };
 	//tri2 = { tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10, 200 }, tk::math::Vec2{ 200, 200 } };
-
-	testTree.Insert(1);
-	testTree.Insert(2);
-	testTree.Insert(3);
-	testTree.Insert(4);
-	testTree.Insert(5);
-	testTree.Insert(6);
-	testTree.Insert(7);
-
-	testTree.DeleteNode(3);
-	testTree.DeleteNode(4);
-
 }
 MyWindow::~MyWindow() {}
 
@@ -183,12 +178,11 @@ void MyWindow::Menu(HDC hdc) {
 }
 
 void MyWindow::Options(HDC hdc) {
-	SelectObject(hdc, TK_BRUSH_WHITE);
-	rect_1.Draw(hdc);
+	
 }
 
 void MyWindow::Game(HDC hdc) {
-	ply.Draw(hdc);
+	ply.Draw(hdc, TK_PEN_RED);
 
 	tk::String k = "";
 	k += (tk::String)"   x: " + ply.rect().x;

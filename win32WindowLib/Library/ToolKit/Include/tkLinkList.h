@@ -9,17 +9,23 @@ namespace tk {
 		LinkList() : m_head(nullptr), m_tail(nullptr){}
 		~LinkList(){}
 
-		void CreateNode(T Val) {
+		void InsertEnd(T Val) {
 			Node* temp = new Node;
 			temp->data = Val;
 			temp->next = nullptr;
 			if (m_head == nullptr) {
 				m_head = temp;
 				m_tail = temp;
-				temp = NULL;
 			} else {
-				m_tail->next = m_tail;
-				m_tail = temp;
+				if (m_head == m_tail) {
+					m_tail->next = m_tail;
+					m_tail = temp;
+					m_head->next = m_tail;
+				}
+				else {
+					m_tail->next = temp;
+					m_tail = temp;
+				}
 			}
 		}
 
@@ -64,9 +70,9 @@ namespace tk {
 			delete temp;
 		}
 		void DeletePos(int Pos) {
-			Node* cur = new Node, pre* = new Node;
+			Node* cur = new Node, *pre = new Node;
 			cur = m_head;
-			for (int i = 0, i < Pos; i++){
+			for (int i = 0; i < Pos; i++) {
 				pre = cur;
 				cur = cur->next;
 			}
@@ -74,7 +80,7 @@ namespace tk {
 			delete cur;
 		}
 		void DeleteEnd() {
-			Node* cur = new Node, pre* = new Node;
+			Node* cur = new Node, *pre = new Node;
 			cur = m_head;
 			while (cur->next != nullptr) {
 				pre = cur;
@@ -83,6 +89,36 @@ namespace tk {
 			m_tail = pre;
 			pre->next = nullptr;
 			delete cur;
+		}
+
+		T Index(int index) {
+			Node* cur = new Node, *pre = new Node;
+			cur = m_head;
+			for (int i = 0; i < index; i++) {
+				pre = cur;
+				cur = cur->next;
+			} return cur->data;
+		}
+
+		int FindValuePos(T val) {
+			Node* cur = new Node, *pre = new Node;
+			cur = m_head;
+			int i = 0;
+			while (cur->next != nullptr) {
+				if (cur->data == val) break;
+				pre = cur;
+				cur = cur->next;
+				i++;
+			} return i;
+		}
+
+		int FindValue(T val) {
+			Node* cur = new Node, *pre = new Node;
+			cur = m_head;
+			while (cur->data != val) {
+				pre = cur;
+				cur = cur->next;
+			} return cur->data;
 		}
 	};
 }

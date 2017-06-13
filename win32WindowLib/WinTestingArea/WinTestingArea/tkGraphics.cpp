@@ -28,10 +28,9 @@ namespace tk {
 				}
 			}
 
-			hPen = CreatePen(PS_SOLID, 1, RGB(255, 255, 255));
 		}
-		void gTriangle::Draw(HDC hdc) {
-			SelectObject(hdc, hPen);
+		void gTriangle::Draw(HDC hdc, HPEN color) {
+			SelectObject(hdc, color);
 			if (m_vertex[1].y == m_vertex[2].y) {
 				fillBottomFlatTriangle(hdc, m_vertex[0], m_vertex[1], m_vertex[2]);
 			}
@@ -75,9 +74,7 @@ namespace tk {
 			}
 		}
 
-		gTriangle::~gTriangle() {
-			DeleteObject(hPen);
-		}
+		gTriangle::~gTriangle() { }
 
 		/************************************************************************************************************************
 		************************************************************************************************************************/
@@ -96,18 +93,15 @@ namespace tk {
 				tk::math::Vec2{ v3.x, v3.y }
 			};
 
-			hPen = CreatePen(PS_SOLID, 1, RGB(255, 255, 255));
 		}
 
-		void gRectange::Draw(HDC hdc) {
-			SelectObject(hdc, hPen);
-			tri_0.Draw(hdc);
-			tri_1.Draw(hdc);
+		void gRectange::Draw(HDC hdc, HPEN color) {
+			SelectObject(hdc, color);
+			tri_0.Draw(hdc, color);
+			tri_1.Draw(hdc, color);
 		}
 
-		gRectange::~gRectange() {
-			DeleteObject(hPen);
-		}
+		gRectange::~gRectange() { }
 
 		/************************************************************************************************************************
 		************************************************************************************************************************/

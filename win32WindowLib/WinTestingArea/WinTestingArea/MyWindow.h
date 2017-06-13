@@ -3,7 +3,7 @@
 #include <tkLinkList.h>
 #include "tkStateManager.h"
 #include "tkGraphics.h"
-#include "tkTree.h"
+#include "tkHashMap.h"
 #include "Player.h"
 
 class MyWindow : public tk::win::Window {
@@ -67,6 +67,6 @@ private:
 	tk::math::Vec3 v4;
 
 	/* ---- TESTING ---- */
-
-	tk::std::Tree<int> testTree;
+	tk::std::HashMap<int> hm;
+	//tk::LinkList<int> list;
 };

@@ -4,8 +4,6 @@
 
 namespace tk {
 	namespace win {
-		
-
 		struct WinObject {
 			WinObject();
 			/* ---- WinObject ----
