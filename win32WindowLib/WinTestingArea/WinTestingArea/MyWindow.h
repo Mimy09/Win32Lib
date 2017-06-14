@@ -5,13 +5,12 @@
 #include "tkGraphics.h"
 #include "tkHashMap.h"
 #include "Player.h"
+#include "EnemyFactory.h"
 
 class MyWindow : public tk::win::Window {
 public:
 	MyWindow();
 	~MyWindow();
-
-	bool IntersectBox(RECT r1, RECT r2);
 
 	virtual void OnKeyDown(UINT key);
 	virtual void OnKeyUp(UINT key);
@@ -31,11 +30,7 @@ private:
 	/* -- DEV VAR -- */
 	tk::win::WinText m_development_text;
 	RECT development_rect;
-
-	//tk::graphics::gTriangle tri;
-	//tk::graphics::gTriangle tri2;
-
-	tk::graphics::gRectange rect_1;
+	
 
 	/* ---- PRIVATE VARIABLES ---- */
 	// Title Text
@@ -60,13 +55,18 @@ private:
 
 	/* ---- Game Stuff ---- */
 	Player ply;
-	tk::math::Mat3 mat;
-	tk::math::Vec3 v1;
-	tk::math::Vec3 v2;
-	tk::math::Vec3 v3;
-	tk::math::Vec3 v4;
+	//tk::math::Mat3 mat;
+	//tk::math::Vec3 v1;
+	//tk::math::Vec3 v2;
+	//tk::math::Vec3 v3;
+	//tk::math::Vec3 v4;
+
+	game::Enemy* m_enemy;
+
+	tk::LinkList<game::Enemy*> m_enemys;
 
 	/* ---- TESTING ---- */
-	tk::std::HashMap<int> hm;
-	//tk::LinkList<int> list;
+	tk::graphics::gRectange rect_1;
+
+	game::EnemyFactory m_enemyFactory;
 };

@@ -152,6 +152,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="MyWindow.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="tkGraphics.cpp" />
@@ -160,6 +162,10 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyFactory.h" />
+    <ClInclude Include="EnemyShips.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="tkGraphics.h" />
     <ClInclude Include="tkHashMap.h" />

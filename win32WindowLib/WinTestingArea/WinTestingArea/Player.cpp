@@ -2,20 +2,13 @@
 
 Player::Player() {
 	ply_forward = ply_back = ply_left = ply_right = false;
-	ply_rect = { 200, 200, 30, 30 };
-
-	ply_gRect = {
-		tk::math::Vec2{ ply_rect.x, ply_rect.y },
-		tk::math::Vec2{ ply_rect.x + ply_rect.width, ply_rect.y },
-		tk::math::Vec2{ ply_rect.x + ply_rect.width, ply_rect.y + ply_rect.height },
-		tk::math::Vec2{ ply_rect.x, ply_rect.y + ply_rect.height }
-	};
-
+	m_entPos = { 200, 200, 30, 30 };
 	SetMovment(30.f, 15.f);
+	m_health = 100;
 }
 Player::Player(float x, float y, float width, float height) {
 	ply_forward = ply_back = ply_left = ply_right = false;
-	ply_rect = { x, y, width, height };
+	m_entPos = { x, y, width, height };
 	SetMovment(30.f, 15.f);
 }
 Player::~Player() {}
@@ -26,93 +19,101 @@ void Player::SetMovment(float acceleration, float maxSpeed) {
 	m_vel_x = m_vel_y = 0;
 }
 
-void Player::Draw(HDC hdc, HPEN color) {
-	ply_gRect.Draw(hdc, color);
-	//Rectangle(hdc, (int)ply_rect.x, (int)ply_rect.y, (int)ply_rect.area().width, (int)ply_rect.area().height);
+void Player::Reset() {
+	ply_forward = ply_back = ply_left = ply_right = false;
+	m_entPos = { 200, 200, 30, 30 };
+	m_health = 100;
 }
 
-void Player::Update(double deltaTime, int screenW, int screenH) {
+void Player::UpdatePlayer(double deltaTime, int screenW, int screenH) {
 	/* ---- Sharp control ---- */
-	/*if (ply_forward && ply_rect.y > 0) { ply_rect.y -= 500 * deltaTime; }
-	else if (ply_rect.y < 0){ ply_rect.y = 0; }
-		
-	if (ply_back && ply_rect.y < screenH - ply_rect.height) { ply_rect.y += 500 * deltaTime; }
-	else if (ply_rect.y > screenH - ply_rect.height) { ply_rect.y = screenH - ply_rect.height; }
+	/*if (ply_forward && m_entPos.y > 0) { m_entPos.y -= 500 * deltaTime; }
+	else if (m_entPos.y < 0){ m_entPos.y = 0; }
 
-	if (ply_left && ply_rect.x > 0) { ply_rect.x -= 500 * deltaTime; }
-	else if (ply_rect.x < 0) { ply_rect.x = 0; }
+	if (ply_back && m_entPos.y < screenH - m_entPos.height) { m_entPos.y += 500 * deltaTime; }
+	else if (m_entPos.y > screenH - m_entPos.height) { m_entPos.y = screenH - m_entPos.height; }
 
-	if (ply_right && ply_rect.x < screenW - ply_rect.width) { ply_rect.x += 500 * deltaTime; }
-	else if (ply_rect.x > screenW - ply_rect.width) { ply_rect.x = screenW - ply_rect.width; } */
+	if (ply_left && m_entPos.x > 0) { m_entPos.x -= 500 * deltaTime; }
+	else if (m_entPos.x < 0) { m_entPos.x = 0; }
+
+	if (ply_right && m_entPos.x < screenW - m_entPos.width) { m_entPos.x += 500 * deltaTime; }
+	else if (m_entPos.x > screenW - m_entPos.width) { m_entPos.x = screenW - m_entPos.width; } */
 
 	/* ---- Smooth control ---- */
-	if (ply_rect.y >= 0 && ply_rect.y <= screenH - ply_rect.height) {
+	if (m_entPos.y >= 0 && m_entPos.y <= screenH - m_entPos.height) {
 		if (ply_forward) {
 			if (m_vel_y < m_max_speed_y) {
 				if (m_vel_y < 0)m_vel_y += m_acceleration_y * (float)deltaTime * 4;
 				else m_vel_y += m_acceleration_y * (float)deltaTime;
 			}
-		} else if (ply_back) {
+		}
+		else if (ply_back) {
 			if (m_vel_y > -m_max_speed_y) {
 				if (m_vel_y > 0)m_vel_y -= m_acceleration_y * (float)deltaTime * 4;
 				else m_vel_y -= m_acceleration_y * (float)deltaTime;
 			}
-		} else{
+		}
+		else {
 			if (m_vel_y > 0) {
 				m_vel_y -= m_acceleration_y * (float)deltaTime * 4;
 				if (m_vel_y < 0) m_vel_y = 0;
-			} else if (m_vel_y < 0) {
+			}
+			else if (m_vel_y < 0) {
 				m_vel_y += m_acceleration_y * (float)deltaTime * 4;
 				if (m_vel_y > 0) m_vel_y = 0;
 			}
 		}
-	} else { 
+	}
+	else {
 		/* ---- No screen wrap ---- */
-		if (ply_rect.y < 0) { ply_rect.y = 0; m_vel_y = 0; }
-		if (ply_rect.y > screenH - ply_rect.height) { ply_rect.y = screenH - ply_rect.height; m_vel_y = 0; }
+		if (m_entPos.y < 0) { m_entPos.y = 0; m_vel_y = 0; }
+		if (m_entPos.y > screenH - m_entPos.height) { m_entPos.y = screenH - m_entPos.height; m_vel_y = 0; }
 
 		/* ---- Screen wrap ---- */
-		//if (ply_rect.y < 0) { ply_rect.y = screenH - ply_rect.height; }
-		//if (ply_rect.y > screenH - ply_rect.height) { ply_rect.y = 0; }
-	} ply_rect.y -= m_vel_y;
-	
+		//if (m_entPos.y < 0) { m_entPos.y = screenH - m_entPos.height; }
+		//if (m_entPos.y > screenH - m_entPos.height) { m_entPos.y = 0; }
+	} m_entPos.y -= m_vel_y;
 
-	if (ply_rect.x >= 0 && ply_rect.x <= screenW - ply_rect.width) {
+
+	if (m_entPos.x >= 0 && m_entPos.x <= screenW - m_entPos.width) {
 		if (ply_left) {
 			if (m_vel_x < m_max_speed_x) {
 				if (m_vel_x < 0)m_vel_x += m_acceleration_x * (float)deltaTime * 4;
 				else m_vel_x += m_acceleration_x * (float)deltaTime;
 			}
-		} else if (ply_right) {
+		}
+		else if (ply_right) {
 			if (m_vel_x > -m_max_speed_x) {
 				if (m_vel_x > 0)m_vel_x -= m_acceleration_x * (float)deltaTime * 4;
 				else m_vel_x -= m_acceleration_x * (float)deltaTime;
 			}
-		} else {
+		}
+		else {
 			if (m_vel_x > 0) {
 				m_vel_x -= m_acceleration_x * (float)deltaTime * 4;
 				if (m_vel_x < 0) m_vel_x = 0;
-			} else if (m_vel_x < 0) {
+			}
+			else if (m_vel_x < 0) {
 				m_vel_x += m_acceleration_x * (float)deltaTime * 4;
 				if (m_vel_x > 0) m_vel_x = 0;
 			}
 		}
-	} else {
+	}
+	else {
 		/* ---- No screen wrap ---- */
-		if (ply_rect.x < 0) { ply_rect.x = 0; m_vel_x = 0; }
-		if (ply_rect.x > screenW - ply_rect.width) { ply_rect.x = screenW - ply_rect.width; m_vel_x = 0; }
+		if (m_entPos.x < 0) { m_entPos.x = 0; m_vel_x = 0; }
+		if (m_entPos.x > screenW - m_entPos.width) { m_entPos.x = screenW - m_entPos.width; m_vel_x = 0; }
 
 		/* ---- Screen wrap ---- */
-		//if (ply_rect.x < 0) { ply_rect.x = screenW - ply_rect.width; }
-		//if (ply_rect.x > screenW - ply_rect.width) { ply_rect.x = 0; }
-	} ply_rect.x -= m_vel_x;
+		//if (m_entPos.x < 0) { m_entPos.x = screenW - m_entPos.width; }
+		//if (m_entPos.x > screenW - m_entPos.width) { m_entPos.x = 0; }
+	} m_entPos.x -= m_vel_x;
 
-	ply_gRect = {
-		tk::math::Vec2{ ply_rect.x, ply_rect.y },
-		tk::math::Vec2{ ply_rect.x + ply_rect.width, ply_rect.y },
-		tk::math::Vec2{ ply_rect.x + ply_rect.width, ply_rect.y + ply_rect.height },
-		tk::math::Vec2{ ply_rect.x, ply_rect.y + ply_rect.height }
-	};
+
+	if (m_health < 0) m_health = 0;
+	if (m_health == 0) {
+		Reset();
+	}
 }
 
 void Player::OnKeyUp(UINT key) {

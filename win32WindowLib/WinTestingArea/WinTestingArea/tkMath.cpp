@@ -9,6 +9,7 @@ namespace tk {
 		Mat3::Mat3() {
 			SetIdentity();
 		}
+		//TODO: create sin and cos instead of using standered math lib
 		void Mat3::SetRotateX(float angle) {
 			SetIdentity();
 			m_col2.y = (float)cos(angle); m_col2.z = (float)sin(angle);

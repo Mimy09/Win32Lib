@@ -10,9 +10,15 @@ namespace tk {
 			HashMap() {}
 			~HashMap() {}
 
-			void Put(tk::String key, T value) {
+			void Add(tk::String key, T value) {
 				m_key.InsertEnd(Hash(key));
 				m_value.InsertEnd(value);
+			}
+
+			void Remove(tk::String key) {
+				int index m_key.FindValuePos(Hash(key));
+				m_key.DeletePos(index);
+				m_value.DeletePos(index);
 			}
 
 			T Get(tk::String key) {
@@ -20,22 +26,6 @@ namespace tk {
 			}
 
 			unsigned int Hash (tk::String key) {
-				/*
-				unsigned int hash = 0;
-				unsigned int ho = hash & 0xf8000000;
-
-				for (int i = 0; i < str.length(); i++) {
-					hash = hash << 5;
-					hash = hash ^ (ho >> 27);
-					hash = hash ^ str.data[i];
-				} return hash;
-				
-				
-				unsigned int hash = 0;
-				for (unsigned int i = 0; i < str.length(); i++) {
-					hash = (hash * 1313) + str.data[i];
-				} return (hash & 0x7FFFFFFF);
-				*/
 				unsigned int hash = 0, x = 0;
 				for (unsigned int i = 0; i < key.length(); i++) {
 					hash = (hash << 4) + key.data[i];

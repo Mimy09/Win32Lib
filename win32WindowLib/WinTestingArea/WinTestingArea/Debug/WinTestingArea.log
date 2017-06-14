@@ -1,9 +1,2 @@
 ﻿  MyWindow.cpp
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkhashmap.h(40): warning C4018: '<': signed/unsigned mismatch
-  l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkhashmap.h(22): note: while compiling class template member function 'unsigned int tk::std::HashMap<int>::Hash(tk::String)'
-  l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\tkhashmap.h(19): note: see reference to function template instantiation 'unsigned int tk::std::HashMap<int>::Hash(tk::String)' being compiled
-  l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.h(70): note: see reference to class template instantiation 'tk::std::HashMap<int>' being compiled
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Main.cpp
-  WinTestingArea.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\Debug\WinTestingArea.exe
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp : fatal error C1041: cannot open program database 'L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea\Debug\vc140.idb'; if multiple CL.EXE write to the same .PDB file, please use /FS

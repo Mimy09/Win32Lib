@@ -13,29 +13,23 @@ MyWindow::MyWindow() {
 	m_options.SetFont(46);
 	m_exit.SetFont(46);
 
-	hm.Put("Hello", 10);
-	hm.Put("Hello1", 11);
-	hm.Put("Hello2", 12);
-	hm.Put("Hello3", 13);
+	m_enemys.InsertEnd(m_enemyFactory.CreateEnemy(game::EnemyFactory::EASY));
 
-	int lll = hm.Get("hello1");
+	m_enemy = m_enemyFactory.CreateEnemy(game::EnemyFactory::EASY);
 
 	//tri = { tk::math::Vec2{10, 10}, tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10,200 } };
 	//tri2 = { tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10, 200 }, tk::math::Vec2{ 200, 200 } };
 }
-MyWindow::~MyWindow() {}
-
-bool MyWindow::IntersectBox(RECT r1, RECT r2) {
-	if (r1.left > r2.left &&
-		r1.right < (r2.right + r2.left) &&
-		r1.top > r2.top &&
-		r1.bottom < (r2.bottom + r2.top)) {
-		return true;
-	}return false;
+MyWindow::~MyWindow() {
+	if (m_enemy) {
+		delete m_enemy;
+		m_enemy = nullptr;
+	}
 }
 
 void MyWindow::OnKeyDown(UINT key) {
 	if (key == VK_ESCAPE) {
+		ply.Reset();
 		m_sm.SetState(new tk::states::MenuState());
 	}
 	switch (m_sm.GetState()) {
@@ -67,13 +61,13 @@ void MyWindow::OnKeyUp(UINT key) {
 void MyWindow::OnMouseDown(int x, int y, UINT param) {
 	if (m_sm.GetState() == tk::states::GAME_STATE::MENU) {
 		RECT mousePos = { x - 1, y - 1, x + 1, y + 1 };
-		if (IntersectBox(mousePos, m_start_rect)) {
+		if (tk::graphics::Rect::IntersectBox(mousePos, m_start_rect)) {
 			m_sm.SetState(new tk::states::GameRunningState());
 		}
-		if (IntersectBox(mousePos, m_options_rect)) {
+		if (tk::graphics::Rect::IntersectBox(mousePos, m_options_rect)) {
 			m_sm.SetState(new tk::states::OptionsState());
 		}
-		if (IntersectBox(mousePos, m_exit_rect)) {
+		if (tk::graphics::Rect::IntersectBox(mousePos, m_exit_rect)) {
 			m_sm.SetState(new tk::states::ClosingState());
 			PostQuitMessage(0);
 		}
@@ -104,14 +98,18 @@ void MyWindow::Update(double deltaTime) {
 	m_sm.Update();
 	switch (m_sm.GetState()) {
 	case tk::states::GAME_STATE::GAME_RUNNING:
-		ply.Update(deltaTime, ScreenRectWidth(), ScreenRectHeight());
+		ply.Update();
+		ply.UpdatePlayer(deltaTime, ScreenRectWidth(), ScreenRectHeight());
+		m_enemy->Update();
+		m_enemy->UpdateEnemy(ply);
 		TK_UPDATE_RECT(hwnd(), &ply.rect().area().convertRECT());
+		TK_UPDATE_RECT(hwnd(), &m_enemy->rect().area().convertRECT());
 		break;
 	case tk::states::GAME_STATE::MENU:
 		m_title_rect = { 0, 50, ScreenRectWidth(), 60 };
-		m_exit_rect = { 0, 400, ScreenRectWidth(), 60 };
-		m_start_rect = { 0, 200, ScreenRectWidth(), 60 };
-		m_options_rect = { 0, 300, ScreenRectWidth(), 60 };
+		m_exit_rect = { 0, 400, ScreenRectWidth(), 460 };
+		m_start_rect = { 0, 200, ScreenRectWidth(), 260 };
+		m_options_rect = { 0, 300, ScreenRectWidth(), 360 };
 		TK_UPDATE_RECT(hwnd(), &m_exit_rect);
 		TK_UPDATE_RECT(hwnd(), &m_start_rect);
 		TK_UPDATE_RECT(hwnd(), &m_title_rect);
@@ -182,12 +180,16 @@ void MyWindow::Options(HDC hdc) {
 }
 
 void MyWindow::Game(HDC hdc) {
-	ply.Draw(hdc, TK_PEN_RED);
+	m_enemy->Draw(hdc, TK_PEN_RED);
+	ply.Draw(hdc, TK_PEN_GREEN);
+	if (ply.Health() == 0) {m_sm.SetState(new tk::states::MenuState()); }
 
-	tk::String k = "";
+	tk::String k = "", ply_stats = "";
 	k += (tk::String)"   x: " + ply.rect().x;
 	k += (tk::String)"   y: " + ply.rect().y;
 	k += (tk::String)"   Y_vel: " + ply.m_vel_y;
 	k += (tk::String)"   X_vel: " + ply.m_vel_x;
+	ply_stats += (tk::String)"   Health: " + ply.Health();
 	TextOut(hdc, 10, 10, k.data, k.length());
+	TextOut(hdc, 10, 30, ply_stats.data, ply_stats.length());
 }
