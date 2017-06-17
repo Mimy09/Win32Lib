@@ -53,6 +53,8 @@ private:
 	tk::String m_exit_string;
 	tk::win::WinText m_exit;
 
+	double m_deltaTime;
+
 	/* ---- Game Stuff ---- */
 	Player ply;
 	//tk::math::Mat3 mat;
@@ -62,11 +64,14 @@ private:
 	//tk::math::Vec3 v4;
 
 	game::Enemy* m_enemy;
+	game::Enemy* m_enemy1;
+
+	int m_score;
 
 	tk::LinkList<game::Enemy*> m_enemys;
 
 	/* ---- TESTING ---- */
 	tk::graphics::gRectange rect_1;
-
+	tk::String comp_stats;
 	game::EnemyFactory m_enemyFactory;
 };

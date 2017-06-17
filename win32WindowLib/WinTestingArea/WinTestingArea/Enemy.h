@@ -17,12 +17,16 @@ namespace game {
 		virtual float Damage() { return m_damage; }
 		virtual float Speed() { return m_speed; }
 
-		virtual void UpdateEnemy(Player& ply);
+		virtual void UpdateEnemy(Player& ply, double deltaTime);
+
+		virtual inline bool Collided() { return m_collided; }
 
 	protected:
 		float m_health;
 		float m_damage;
 		float m_speed;
+
+		bool m_collided;
 	};
 	/*******************************************************
 	********************************************************/

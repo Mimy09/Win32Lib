@@ -17,7 +17,7 @@ namespace game {
 		virtual void Draw(HDC hdc, HPEN hPen) {
 			m_entRect.Draw(hdc, hPen);
 		}
-		virtual tk::graphics::Rect rect() { return m_entPos; }
+		virtual tk::graphics::Rect& rect() { return m_entPos; }
 	protected:
 		tk::graphics::gRectange m_entRect;
 		tk::graphics::Rect m_entPos;

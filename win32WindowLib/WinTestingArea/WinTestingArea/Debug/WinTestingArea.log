@@ -1,2 +1,0 @@
-﻿  MyWindow.cpp
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp : fatal error C1041: cannot open program database 'L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea\Debug\vc140.idb'; if multiple CL.EXE write to the same .PDB file, please use /FS

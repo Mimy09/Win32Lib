@@ -5,7 +5,7 @@ namespace game {
 	public:
 		ShipEasyEnemy() {
 			m_health = 20;
-			m_damage = 1;
+			m_damage = 25;
 			m_speed = 10;
 		}
 		~ShipEasyEnemy() {}
@@ -14,7 +14,7 @@ namespace game {
 	public:
 		ShipMediumEnemy() {
 			m_health = 30;
-			m_damage = 3;
+			m_damage = 50;
 			m_speed = 10;
 		}
 		~ShipMediumEnemy() {}
@@ -23,7 +23,7 @@ namespace game {
 	public:
 		ShipHardEnemy() {
 			m_health = 50;
-			m_damage = 5;
+			m_damage = 75;
 			m_speed = 15;
 		}
 		~ShipHardEnemy() {}
