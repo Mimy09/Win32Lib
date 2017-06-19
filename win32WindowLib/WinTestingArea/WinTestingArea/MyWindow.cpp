@@ -1,7 +1,7 @@
 #include "MyWindow.h"
 
 MyWindow::MyWindow() {
-	m_sm.SetState(new tk::states::MenuState());
+	m_sm.SetState(new tk::states::InitState());
 
 	m_title_string = "SPACE GAME";
 	m_start_string = "START";
@@ -23,6 +23,16 @@ MyWindow::MyWindow() {
 	m_enemy1->rect() = tk::graphics::Rect(75, 75, 100, 100);
 	//tri = { tk::math::Vec2{10, 10}, tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10,200 } };
 	//tri2 = { tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10, 200 }, tk::math::Vec2{ 200, 200 } };
+
+
+	tree.Insert(1);
+	tree.Insert(2);
+	tree.Insert(3);
+	tree.Insert(4);
+	tree.Insert(5);
+	tree.DeleteNode(4);
+
+	int k = 0;
 }
 MyWindow::~MyWindow() {
 	if (m_enemy) {
@@ -37,6 +47,7 @@ void MyWindow::OnKeyDown(UINT key) {
 		m_sm.SetState(new tk::states::MenuState());
 	}
 	switch (m_sm.GetState()) {
+	case tk::states::GAME_STATE::SPLASHSCREEN: break;
 	case tk::states::GAME_STATE::GAME_RUNNING:
 	{
 		ply.OnKeyDown(key);
@@ -50,6 +61,7 @@ void MyWindow::OnKeyDown(UINT key) {
 }
 void MyWindow::OnKeyUp(UINT key) {
 	switch (m_sm.GetState()) {
+	case tk::states::GAME_STATE::SPLASHSCREEN: break;
 	case tk::states::GAME_STATE::GAME_RUNNING:
 	{
 		ply.OnKeyUp(key);
@@ -82,9 +94,8 @@ void MyWindow::OnPaint(HDC hdc) {
 	PatBlt(hdc, 0, 0, ScreenRectWidth(), ScreenRectHeight(), PATCOPY);
 	SelectObject(hdc, TK_BRUSH_WHITE);
 
-	
-
 	switch (m_sm.GetState()) {
+	case tk::states::GAME_STATE::SPLASHSCREEN: SplashScreen(hdc); break;
 	case tk::states::GAME_STATE::GAME_RUNNING: Game(hdc); break;
 	case tk::states::GAME_STATE::MENU: Menu(hdc); break;
 	case tk::states::GAME_STATE::OPTIONS: Options(hdc); break;
@@ -101,12 +112,20 @@ void MyWindow::OnPaint(HDC hdc) {
 }
 
 void MyWindow::Update(double deltaTime) {
+	Window::Update(deltaTime);
 	m_deltaTime = deltaTime;
 	m_sm.Update();
 
 	m_timer.calcFPS();
 
 	switch (m_sm.GetState()) {
+	case tk::states::GAME_STATE::INIT: m_sm.SetState(new tk::states::SplashScreenState()); break;
+	case tk::states::GAME_STATE::SPLASHSCREEN:
+		m_title_rect = { 0, ScreenRectHeight() / 2 - 60, ScreenRectWidth(), 60 };
+		if (m_timer.elapsed() > 3) {
+			m_sm.SetState(new tk::states::MenuState);
+		}
+		break;
 	case tk::states::GAME_STATE::GAME_RUNNING:
 		ply.Update();
 		ply.UpdatePlayer(deltaTime, ScreenRectWidth(), ScreenRectHeight());
@@ -201,7 +220,7 @@ void MyWindow::Game(HDC hdc) {
 	if (m_enemy != nullptr) {
 		if (m_enemy->Health() <= 0) {
 			m_score++;
-			ply.Fual() += 10;
+			ply.Fuel() += 10;
 			ply.Health(ply.Health() + 25);
 			if (m_enemy) {
 				delete m_enemy;
@@ -240,7 +259,7 @@ void MyWindow::Game(HDC hdc) {
 	k += (tk::String)"   Y_vel: " + ply.m_vel_y;
 	k += (tk::String)"   X_vel: " + ply.m_vel_x;
 	ply_score += (tk::String)"   Score: " + m_score;
-	ply_score += (tk::String)"   Fual: " + ply.Fual();
+	ply_score += (tk::String)"   Fuel: " + ply.Fuel();
 	enemy_stats += (tk::String)"   Time: " + (int)m_enemy->Health();
 	ply_stats += (tk::String)"   Food: " + (int)ply.Health();
 	TextOut(hdc, 10, 10, comp_stats.data, comp_stats.length());
@@ -248,4 +267,16 @@ void MyWindow::Game(HDC hdc) {
 	TextOut(hdc, 10, 50, ply_score.data, ply_score.length());
 	TextOut(hdc, m_enemy->rect().x, m_enemy->rect().y, enemy_stats.data, enemy_stats.length());
 	TextOut(hdc, ply.rect().x, ply.rect().y, ply_stats.data, ply_stats.length());
+}
+
+void MyWindow::SplashScreen(HDC hdc) {
+	SetBkMode(hdc, TRANSPARENT);
+
+	SetTextColor(hdc, RGB(200, 50, 50));
+	m_title.Draw(hdc, m_title_string, m_title_rect);
+	SetTextColor(hdc, RGB(255, 255, 255));
+
+	comp_stats = (tk::String)"   FPS: " + m_timer.GetFPS();
+	comp_stats += (tk::String)"   DT: " + m_deltaTime;
+	TextOut(hdc, 10, 10, comp_stats.data, comp_stats.length());
 }

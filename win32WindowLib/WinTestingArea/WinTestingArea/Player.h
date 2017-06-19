@@ -30,10 +30,10 @@ public:
 	float m_vel_y, m_acceleration_y, m_max_speed_y;
 	float m_vel_x, m_acceleration_x, m_max_speed_x;
 
-	inline float& Fual() { return m_fual; }
+	inline float& Fuel() { return m_fuel; }
 private:
 	tk::LinkList<tk::math::Vec2> m_lines;
 
 	bool ply_forward, ply_back, ply_left, ply_right;
-	float m_damage, m_health, m_fual;
+	float m_damage, m_health, m_fuel;
 };

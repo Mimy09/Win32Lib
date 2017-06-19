@@ -29,13 +29,13 @@ void Player::Reset() {
 	ply_forward = ply_back = ply_left = ply_right = false;
 	m_entPos = { 200, 200, 10, 10 };
 	m_health = 100;
-	m_fual = 50;
+	m_fuel = 50;
 	m_vel_x = m_vel_y = 0;
 }
 
 void Player::UpdatePlayer(double deltaTime, int screenW, int screenH) {
-	m_health -= deltaTime * 2;
-	if (m_fual < 0) m_fual = 0;
+	//m_health -= deltaTime * 2;
+	if (m_fuel < 0) m_fuel = 0;
 	/* ---- Sharp control ---- */
 	/*if (ply_forward && m_entPos.y > 0) { m_entPos.y -= 500 * deltaTime; }
 	else if (m_entPos.y < 0){ m_entPos.y = 0; }
@@ -50,16 +50,16 @@ void Player::UpdatePlayer(double deltaTime, int screenW, int screenH) {
 	else if (m_entPos.x > screenW - m_entPos.width) { m_entPos.x = screenW - m_entPos.width; } */
 
 	/* ---- Smooth control ---- */
-	if (m_entPos.y >= 0 && m_entPos.y <= screenH - m_entPos.height && m_fual > 0) {
+	if (m_entPos.y >= 0 && m_entPos.y <= screenH - m_entPos.height && m_fuel > 0) {
 		if (ply_forward) {
-			m_fual -= deltaTime * 2;
+			m_fuel -= deltaTime * 2;
 			if (m_vel_y < m_max_speed_y) {
 				if (m_vel_y < 0)m_vel_y += m_acceleration_y * (float)deltaTime;
 				else m_vel_y += m_acceleration_y * (float)deltaTime;
 			}
 		}
 		else if (ply_back) {
-			m_fual -= deltaTime * 2;
+			m_fuel -= deltaTime * 2;
 			if (m_vel_y > -m_max_speed_y) {
 				if (m_vel_y > 0)m_vel_y -= m_acceleration_y * (float)deltaTime;
 				else m_vel_y -= m_acceleration_y * (float)deltaTime;
@@ -87,16 +87,16 @@ void Player::UpdatePlayer(double deltaTime, int screenW, int screenH) {
 	} m_entPos.y -= m_vel_y * (float)deltaTime;
 
 
-	if (m_entPos.x >= 0 && m_entPos.x <= screenW - m_entPos.width && m_fual > 0) {
+	if (m_entPos.x >= 0 && m_entPos.x <= screenW - m_entPos.width && m_fuel > 0) {
 		if (ply_left) {
-			m_fual -= deltaTime * 2;
+			m_fuel -= deltaTime * 2;
 			if (m_vel_x < m_max_speed_x) {
 				if (m_vel_x < 0)m_vel_x += m_acceleration_x * (float)deltaTime;
 				else m_vel_x += m_acceleration_x * (float)deltaTime;
 			}
 		}
 		else if (ply_right) {
-			m_fual -= deltaTime * 2;
+			m_fuel -= deltaTime * 2;
 			if (m_vel_x > -m_max_speed_x) {
 				if (m_vel_x > 0)m_vel_x -= m_acceleration_x * (float)deltaTime;
 				else m_vel_x -= m_acceleration_x * (float)deltaTime;

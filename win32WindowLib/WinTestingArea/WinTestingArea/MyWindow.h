@@ -7,6 +7,8 @@
 #include "Player.h"
 #include "EnemyFactory.h"
 
+#include "tkTree.h"
+
 class MyWindow : public tk::win::Window {
 public:
 	MyWindow();
@@ -23,6 +25,7 @@ public:
 	void Menu(HDC hdc);
 	void Options(HDC hdc);
 	void Game(HDC hdc);
+	void SplashScreen(HDC hdc);
 
 private:
 	tk::states::StateManager m_sm;
@@ -74,4 +77,5 @@ private:
 	tk::graphics::gRectange rect_1;
 	tk::String comp_stats;
 	game::EnemyFactory m_enemyFactory;
+	tk::std::Tree<int> tree;
 };

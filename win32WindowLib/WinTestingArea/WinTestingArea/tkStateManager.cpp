@@ -14,6 +14,10 @@ namespace tk {
 		}
 		void StateManager::SetState(State* state) {
 			if (m_currentState) m_currentState->OnExit();
+			if (m_currentState) {
+				delete m_currentState;
+				m_currentState = nullptr;
+			}
 			m_currentState = state;
 			if (m_currentState) m_currentState->OnEnter();
 		}

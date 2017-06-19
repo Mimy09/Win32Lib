@@ -4,6 +4,7 @@ namespace tk {
 	namespace states {
 		enum class GAME_STATE {
 			INIT,
+			SPLASHSCREEN,
 			MENU,
 			OPTIONS,
 			GAME_RUNNING,
@@ -35,6 +36,18 @@ namespace tk {
 			~InitState() { }
 
 			virtual GAME_STATE GetState() { return GAME_STATE::INIT; }
+		private:
+
+		};
+
+
+		/* ---- INIT ---- */
+		class SplashScreenState : public State {
+		public:
+			SplashScreenState() {}
+			~SplashScreenState() {}
+
+			virtual GAME_STATE GetState() { return GAME_STATE::SPLASHSCREEN; }
 		private:
 
 		};

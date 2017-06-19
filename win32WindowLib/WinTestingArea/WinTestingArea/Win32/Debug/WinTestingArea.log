@@ -1,7 +1,6 @@
 ﻿  MyWindow.cpp
-d:\programfiles\programming\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp(230): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\programfiles\programming\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp(231): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\programfiles\programming\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp(249): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-d:\programfiles\programming\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp(250): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  WinTestingArea.vcxproj -> D:\ProgramFiles\Programming\_GIT\Win32Lib\win32WindowLib\WinTestingArea\bin\WinTestingArea_Win32_DEBUG.exe
-  WinTestingArea.vcxproj -> D:\ProgramFiles\Programming\_GIT\Win32Lib\win32WindowLib\WinTestingArea\bin\WinTestingArea_Win32_DEBUG.pdb (Full PDB)
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp(249): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp(250): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp(268): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp(269): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  WinTestingArea.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\bin\WinTestingArea_Win32_DEBUG.exe
