@@ -1,0 +1,11 @@
+﻿  Testing.cpp
+l:\_git\win32lib\win32windowlib\library\toolkit\include\tkhashmap.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+l:\_git\win32lib\win32windowlib\library\toolkit\include\tklinkedlist.h(60): warning C4018: '<': signed/unsigned mismatch
+  l:\_git\win32lib\win32windowlib\library\toolkit\include\tklinkedlist.h(57): note: while compiling class template member function 'int &tk::std::LinkedList<int>::operator [](const unsigned int) const'
+  l:\_git\win32lib\win32windowlib\wintestingarea\unittest\testing.cpp(37): note: see reference to function template instantiation 'int &tk::std::LinkedList<int>::operator [](const unsigned int) const' being compiled
+  l:\_git\win32lib\win32windowlib\wintestingarea\unittest\testing.h(23): note: see reference to class template instantiation 'tk::std::LinkedList<int>' being compiled
+l:\_git\win32lib\win32windowlib\library\toolkit\include\tkhashmap.h(30): warning C4018: '<': signed/unsigned mismatch
+  l:\_git\win32lib\win32windowlib\library\toolkit\include\tkhashmap.h(28): note: while compiling class template member function 'unsigned int tk::std::HashMap<int>::Hash(tk::String)'
+  l:\_git\win32lib\win32windowlib\library\toolkit\include\tkhashmap.h(14): note: see reference to function template instantiation 'unsigned int tk::std::HashMap<int>::Hash(tk::String)' being compiled
+  l:\_git\win32lib\win32windowlib\wintestingarea\unittest\testing.h(24): note: see reference to class template instantiation 'tk::std::HashMap<int>' being compiled
+  UnitTest.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\UnitTest_bin\UnitTest_Win32_DEBUG.exe

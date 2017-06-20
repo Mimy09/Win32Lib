@@ -1,6 +1,8 @@
 #pragma once
 #include "tkGraphics.h"
 
+#include "tkexception.h"
+
 namespace game {
 	class Entity {
 	public:

@@ -32,7 +32,7 @@ public:
 
 	inline float& Fuel() { return m_fuel; }
 private:
-	tk::LinkList<tk::math::Vec2> m_lines;
+	tk::std::LinkList<tk::math::Vec2> m_lines;
 
 	bool ply_forward, ply_back, ply_left, ply_right;
 	float m_damage, m_health, m_fuel;

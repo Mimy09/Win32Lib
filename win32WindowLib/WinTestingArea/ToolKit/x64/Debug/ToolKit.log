@@ -1,0 +1,37 @@
+﻿  tkWinObject.cpp
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwinobject.cpp(99): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwinobject.cpp(110): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  tkWindow.cpp
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(11): warning C4312: 'type cast': conversion from 'LONG' to 'tk::win::Window *' of greater size
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(17): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'LONG'
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(17): warning C4302: 'type cast': truncation from 'LPVOID' to 'LONG'
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(66): warning C4244: 'argument': conversion from 'WPARAM' to 'UINT', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(69): warning C4244: 'argument': conversion from 'WPARAM' to 'UINT', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(70): warning C4244: 'argument': conversion from 'WPARAM' to 'UINT', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(71): warning C4244: 'argument': conversion from 'WPARAM' to 'UINT', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(72): warning C4244: 'argument': conversion from 'WPARAM' to 'UINT', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(73): warning C4244: 'argument': conversion from 'WPARAM' to 'UINT', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(86): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(90): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tklinkedlist.h(44): warning C4018: '<': signed/unsigned mismatch
+  l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tklinkedlist.h(41): note: while compiling class template member function 'HBRUSH &tk::std::LinkedList<T>::operator [](const unsigned int) const'
+          with
+          [
+              T=HBRUSH
+          ]
+  l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkobjectpool.h(68): note: see reference to function template instantiation 'HBRUSH &tk::std::LinkedList<T>::operator [](const unsigned int) const' being compiled
+          with
+          [
+              T=HBRUSH
+          ]
+  l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkobjectpool.h(62): note: see reference to class template instantiation 'tk::std::LinkedList<T>' being compiled
+          with
+          [
+              T=HBRUSH
+          ]
+  l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.h(194): note: see reference to class template instantiation 'tk::std::ObjectPool<HBRUSH>' being compiled
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkwindow.cpp(201): warning C4008: 'WinMain': 'inline' attribute ignored
+  tkTimer.cpp
+  tkString.cpp
+  Generating Code...
+  ToolKit.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\ToolKit_bin\ToolKit_x64_DEBUG.lib

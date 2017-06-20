@@ -1,0 +1,25 @@
+﻿  tkString.cpp
+  tkTimer.cpp
+  tkWindow.cpp
+tkWindow.cpp(86): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
+tkWindow.cpp(90): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
+l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkLinkedList.h(44): warning C4018: '<': signed/unsigned mismatch
+  l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkLinkedList.h(41): note: while compiling class template member function 'HBRUSH &tk::std::LinkedList<T>::operator [](const unsigned int) const'
+          with
+          [
+              T=HBRUSH
+          ]
+  l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkObjectPool.h(68): note: see reference to function template instantiation 'HBRUSH &tk::std::LinkedList<T>::operator [](const unsigned int) const' being compiled
+          with
+          [
+              T=HBRUSH
+          ]
+  l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkObjectPool.h(62): note: see reference to class template instantiation 'tk::std::LinkedList<T>' being compiled
+          with
+          [
+              T=HBRUSH
+          ]
+  l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkWindow.h(194): note: see reference to class template instantiation 'tk::std::ObjectPool<HBRUSH>' being compiled
+tkWindow.cpp(201): warning C4008: 'WinMain': 'inline' attribute ignored
+  tkWinObject.cpp
+  ToolKit.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\ToolKit_bin\ToolKit_Win32.lib

@@ -71,7 +71,7 @@ private:
 
 	int m_score;
 
-	tk::LinkList<game::Enemy*> m_enemys;
+	tk::std::LinkList<game::Enemy*> m_enemys;
 
 	/* ---- TESTING ---- */
 	tk::graphics::gRectange rect_1;
