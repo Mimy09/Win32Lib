@@ -1,12 +1,4 @@
-﻿  Enemy.cpp
-  Generating Code...
-  Compiling...
-  Player.cpp
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\player.cpp(55): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\player.cpp(62): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\player.cpp(92): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\player.cpp(99): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-  MyWindow.cpp
+﻿  MyWindow.cpp
 l:\_git\win32lib\win32windowlib\library\toolkit\include\tkhashmap.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp(249): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\mywindow.cpp(250): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
@@ -29,8 +21,16 @@ l:\_git\win32lib\win32windowlib\library\toolkit\include\tklinkedlist.h(60): warn
               T=HBRUSH
           ]
   l:\_git\win32lib\win32windowlib\library\toolkit\include\tkwindow.h(194): note: see reference to class template instantiation 'tk::std::ObjectPool<HBRUSH>' being compiled
+  Generating Code...
+  Compiling...
+  Player.cpp
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\player.cpp(55): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\player.cpp(62): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\player.cpp(92): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+l:\_git\win32lib\win32windowlib\wintestingarea\wintestingarea\player.cpp(99): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
   Main.cpp
 l:\_git\win32lib\win32windowlib\library\toolkit\include\tkhashmap.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   EnemyFactory.cpp
+  Enemy.cpp
   Generating Code...
   WinTestingArea.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\WinTestingArea_Win32_DEBUG.exe

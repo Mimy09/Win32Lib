@@ -1,4 +1,38 @@
-﻿  Generating code
-  All 213 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+﻿  Enemy.cpp
+  EnemyFactory.cpp
+  Main.cpp
+L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkHashMap.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  MyWindow.cpp
+L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkHashMap.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+MyWindow.cpp(249): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MyWindow.cpp(250): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MyWindow.cpp(268): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+MyWindow.cpp(269): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+l:\_git\win32lib\win32windowlib\library\toolkit\include\tkLinkedList.h(60): warning C4018: '<': signed/unsigned mismatch
+  l:\_git\win32lib\win32windowlib\library\toolkit\include\tkLinkedList.h(57): note: while compiling class template member function 'HBRUSH &tk::std::LinkedList<T>::operator [](const unsigned int) const'
+          with
+          [
+              T=HBRUSH
+          ]
+  l:\_git\win32lib\win32windowlib\library\toolkit\include\tkObjectPool.h(37): note: see reference to function template instantiation 'HBRUSH &tk::std::LinkedList<T>::operator [](const unsigned int) const' being compiled
+          with
+          [
+              T=HBRUSH
+          ]
+  l:\_git\win32lib\win32windowlib\library\toolkit\include\tkObjectPool.h(62): note: see reference to class template instantiation 'tk::std::LinkedList<T>' being compiled
+          with
+          [
+              T=HBRUSH
+          ]
+  L:\_GIT\Win32Lib\win32WindowLib\Library\ToolKit\Include\tkWindow.h(194): note: see reference to class template instantiation 'tk::std::ObjectPool<HBRUSH>' being compiled
+  Player.cpp
+Player.cpp(55): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+Player.cpp(62): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+Player.cpp(92): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+Player.cpp(99): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  Generating code
+  70 of 213 functions (32.9%) were compiled, the rest were copied from previous compilation.
+    2 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   WinTestingArea.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\WinTestingArea_x64.exe

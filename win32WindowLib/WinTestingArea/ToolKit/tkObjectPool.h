@@ -33,7 +33,7 @@ namespace tk {
 			// adds and returns a new object at end of the pool or
 			// if it exists in the pool all ready return the pointer
 			// to the object in the pool
-			T* ReturnObject(int index) {
+			T* ReturnObjectIndex(int index) {
 				return &m_pool[index];
 			}
 

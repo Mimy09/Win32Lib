@@ -3,7 +3,7 @@
 #include <tkexception.h>
 
 /* ---- TK LIBRARY ---- */
-//#include <tkObjectPool.h>
+#include <tkObjectPool.h>
 #include <tkLinkedList.h>
 #include <tkHashMap.h>
 #include <tkTree.h>
@@ -23,7 +23,7 @@ private:
 	tk::std::LinkedList<int> m_tkLinkedList;
 	tk::std::HashMap<int> m_tkHashMap;
 	tk::std::Tree<int> m_tkTree;
-	//tk::std::ObjectPool<int> m_tkObjectPool;
+	tk::std::ObjectPool<int> m_tkObjectPool;
 
 	/* ---- STD LIBRARY ---- */
 	std::vector<int> m_stdLinkedList;

@@ -81,11 +81,13 @@ namespace tk {
 			int find(Node node) const {
 				Node* cur = new Node, *pre = new Node;
 				cur = m_head;
+				int count = 0;
 				while (cur->next != nullptr) {
 					if (*cur == node) break;
 					pre = cur;
 					cur = cur->next;
-				} return cur->value;
+					count++;
+				} return count;
 			}
 			/* ---- OPERATOR= ----
 			Copies the valuse across*/

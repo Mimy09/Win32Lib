@@ -43,7 +43,7 @@ void Testing::LinkedListTesting() {
 		if (m_tkLinkedList[i] != m_stdLinkedList[i]) TK_EXCEPTION("Linked List");
 
 	m_tkLinkedList.insert(m_tkLinkedList.find(m_tkLinkedList.front()), 2);
-	m_stdLinkedList.insert(m_stdLinkedList.begin(), 2);
+	m_stdLinkedList.insert(m_stdLinkedList.begin() + 1, 2);
 
 	for (int i = 0; i < m_tkLinkedList.size(); i++)
 		if (m_tkLinkedList[i] != m_stdLinkedList[i]) TK_EXCEPTION("Linked List");

@@ -24,29 +24,29 @@
 #define TK_MSG_UPDATE 0
 #define TK_MSG_DISPATCH 1
 
-#define TK_BRUSH_BLACK *m_brushPool.ReturnObject(0)
-#define TK_BRUSH_WHITE *m_brushPool.ReturnObject(1)
+#define TK_BRUSH_BLACK *m_brushPool.ReturnObjectIndex(0)
+#define TK_BRUSH_WHITE *m_brushPool.ReturnObjectIndex(1)
 
-#define TK_BRUSH_RED *m_brushPool.ReturnObject(2)
-#define TK_BRUSH_GREEN *m_brushPool.ReturnObject(3)
-#define TK_BRUSH_BLUE *m_brushPool.ReturnObject(4)
+#define TK_BRUSH_RED *m_brushPool.ReturnObjectIndex(2)
+#define TK_BRUSH_GREEN *m_brushPool.ReturnObjectIndex(3)
+#define TK_BRUSH_BLUE *m_brushPool.ReturnObjectIndex(4)
 
-#define TK_BRUSH_YELLOW *m_brushPool.ReturnObject(5)
-#define TK_BRUSH_PURPLE *m_brushPool.ReturnObject(6)
-#define TK_BRUSH_CYAN *m_brushPool.ReturnObject(7)
+#define TK_BRUSH_YELLOW *m_brushPool.ReturnObjectIndex(5)
+#define TK_BRUSH_PURPLE *m_brushPool.ReturnObjectIndex(6)
+#define TK_BRUSH_CYAN *m_brushPool.ReturnObjectIndex(7)
 
 
 
 #define TK_PEN_BLACK *m_penPool.ReturnObject(0)
 #define TK_PEN_WHITE *m_penPool.ReturnObject(1)
 
-#define TK_PEN_RED *m_penPool.ReturnObject(2)
-#define TK_PEN_GREEN *m_penPool.ReturnObject(3)
-#define TK_PEN_BLUE *m_penPool.ReturnObject(4)
+#define TK_PEN_RED *m_penPool.ReturnObjectIndex(2)
+#define TK_PEN_GREEN *m_penPool.ReturnObjectIndex(3)
+#define TK_PEN_BLUE *m_penPool.ReturnObjectIndex(4)
 
-#define TK_PEN_YELLOW *m_penPool.ReturnObject(5)
-#define TK_PEN_PURPLE *m_penPool.ReturnObject(6)
-#define TK_PEN_CYAN *m_penPool.ReturnObject(7)
+#define TK_PEN_YELLOW *m_penPool.ReturnObjectIndex(5)
+#define TK_PEN_PURPLE *m_penPool.ReturnObjectIndex(6)
+#define TK_PEN_CYAN *m_penPool.ReturnObjectIndex(7)
 
 namespace tk {
 	namespace win {
