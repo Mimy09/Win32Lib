@@ -5,10 +5,11 @@
 // ################################################################## //
 #pragma once
 #include "tkMacros.h"
+#include "tkString.h"
 
 namespace tk {
 	namespace std {
-		/* ---- LIKED LIST ---- */
+		/* ---- LINKED LIST ---- */
 		template<typename T> class LinkedList {
 		private:
 			/* ---- NODE ----
@@ -29,6 +30,7 @@ namespace tk {
 						temp = temp->next;
 					} return *temp;
 				}
+				//~Node() { TK_SAFE_DELETE(next); }
 			};
 			Node *m_head, *m_tail;
 		public:
@@ -60,9 +62,12 @@ namespace tk {
 			Returns the value found at the index
 			#return T& - reference to the value found*/
 			T& operator[](const unsigned int index) const {
+				if (index == -1) TK_EXCEPTION("Out of range");
 				Node* cur = new Node, *pre = new Node;
 				cur = m_head;
-				for (int i = 0; i < index; i++) {
+				for (int i = 0; i < (int)index; i++) {
+					if (cur->next == nullptr && i < (int)index)
+						TK_EXCEPTION("Out of range");
 					pre = cur;
 					cur = cur->next;
 				} return cur->value;
@@ -72,13 +77,17 @@ namespace tk {
 			#param index - The position in the linked list
 			#return T& - reference to the value found*/
 			T& find(const unsigned int index) const {
+				if (index == -1) TK_EXCEPTION("Out of range");
 				Node* cur = new Node, *pre = new Node;
 				cur = m_head;
-				for (int i = 0; i < index; i++) {
+				for (int i = 0; i < (int)index; i++) {
+					if (cur->next == nullptr && i <= (int)index)
+						TK_EXCEPTION("Out of range");
 					pre = cur;
 					cur = cur->next;
 				} return cur->value;
 			}
+
 			/* ---- FIND ----
 			Returns the Node at the given position
 			#param index - The position in the linked list
@@ -87,8 +96,10 @@ namespace tk {
 				Node* cur = new Node, *pre = new Node;
 				cur = m_head;
 				int count = 0;
-				while (cur->next != nullptr) {
+				while (cur != nullptr) {
 					if (*cur == node) break;
+					if (cur->next == nullptr)
+						return -1;
 					pre = cur;
 					cur = cur->next;
 					count++;
@@ -102,8 +113,10 @@ namespace tk {
 				Node* cur = new Node, *pre = new Node;
 				cur = m_head;
 				int count = 0;
-				while (cur->next != nullptr) {
+				while (cur != nullptr) {
 					if (cur->value == value) break;
+					if (cur->next == nullptr)
+						return -1;
 					pre = cur;
 					cur = cur->next;
 					count++;
@@ -243,6 +256,15 @@ namespace tk {
 				delete cur;
 			}
 
+
+			/* ---- PRINT ----
+			Prints the list onto the console*/
+			void print() {
+				for (int i = 0; i < m_size; i++) {
+					printf("%i: %i | ", i, find(i));
+				} printf("\n");
+			}
+			
 		private:
 			// Stores the size of the linked list
 			int m_size;

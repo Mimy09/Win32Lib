@@ -4,20 +4,25 @@
 // ##			By Mitchell Jenkins - 2017 June 21 - AIE		   ## //
 // ################################################################## //
 #pragma once
+#include "tkMacros.h"
 
 namespace tk {
 	namespace std {
-		template<typename T>
-		class Tree {
+		/* ---- TREE ---- */
+		template<typename T> class Tree {
 		public:
+			/* ---- NODE ----
+			Node struct to hold the value and
+			a pointer to the next element*/
 			struct Node {
 				Node() 
 					: node_left(nullptr), node_right(nullptr){}
 				Node(T Value, Node Right, Node Left)
 					: node_left(Left), node_right(Right), data(Value){}
+				//~Node() { TK_SAFE_DELETE(node_left); TK_SAFE_DELETE(node_right); }
 				T data;
 				int level = 0;
-				Node * node_left, *node_right;
+				Node *node_left, *node_right;
 				void operator=(const Node & n) {
 					data = n.data;
 					level = n.level;
@@ -25,22 +30,41 @@ namespace tk {
 					node_right = n.node_right;
 				}
 			}; 
+			/* DEFAULT CONSTRUCTOR */
 			Tree() {
 				NULL_NODE = new Node();
 				NULL_NODE->node_left = NULL_NODE->node_right = NULL_NODE;
 				NULL_NODE->level = 0;
 				m_root = NULL_NODE;
 			}
-			~Tree() { if (m_root) { delete m_root; m_root = nullptr; } }
+			/* DEFAULT EDCONSTRUCTOR */
+			~Tree() { }
+
+			/* ---- SEARCH ----
+			Serches through the Tree for the value
+			#param Value - The value that is being searched for
+			#return Node* - Pointer to the node that was found*/
 			Node *Search(const T Value) { return Search(Value, m_root); }
+			/* ---- INSERT ----
+			Adds a new node with the value passed in
+			#param Value - The value that will be added*/
 			void Insert(const T Value) {
 				Insert(Value, m_root);
 			}
+			/* ---- DELETE ----
+			Deletes the whole Tree*/
 			void Delete() { DeleteTree(m_root); }
+			/* ---- DELETE NODE ----
+			Deletes a node withibn the Tree
+			#param Value - The value that will be deleted out of the Tree*/
 			void DeleteNode(T Value) { DeleteNode(Value, m_root); }
+			/* ---- ROOT ----
+			Returns the root of the Tree*/
 			Node * Root() {}
 		private:
+			// Stores the root of the tree
 			Node* m_root;
+			// Null node used to check for empty node
 			Node* NULL_NODE;
 
 			void DeleteTree(Node * leaf) {

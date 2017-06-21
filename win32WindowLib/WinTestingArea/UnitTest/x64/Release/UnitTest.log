@@ -1,1 +1,7 @@
-﻿  UnitTest.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\UnitTest_bin\UnitTest_x64.exe
+﻿  Main.cpp
+  Testing.cpp
+  Generating code
+  All 470 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  UnitTest.vcxproj -> D:\ProgramFiles\Programming\_GIT\Win32Lib\win32WindowLib\WinTestingArea\UnitTest_bin\UnitTest_x64.exe
+  UnitTest.vcxproj -> D:\ProgramFiles\Programming\_GIT\Win32Lib\win32WindowLib\WinTestingArea\UnitTest_bin\UnitTest_x64.pdb (Full PDB)

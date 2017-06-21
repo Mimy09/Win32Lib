@@ -49,25 +49,25 @@ namespace tk {
 		}
 		void gTriangle::DrawLine(HDC hdc, HPEN color) {
 			SelectObject(hdc, color);
-			MoveToEx(hdc, m_vertex[0].x, m_vertex[0].y, NULL);
-			LineTo(hdc, m_vertex[1].x, m_vertex[1].y);
+			MoveToEx(hdc, (int)m_vertex[0].x, (int)m_vertex[0].y, NULL);
+			LineTo(hdc, (int)m_vertex[1].x, (int)m_vertex[1].y);
 
-			MoveToEx(hdc, m_vertex[1].x, m_vertex[1].y, NULL);
-			LineTo(hdc, m_vertex[2].x, m_vertex[2].y);
+			MoveToEx(hdc, (int)m_vertex[1].x, (int)m_vertex[1].y, NULL);
+			LineTo(hdc, (int)m_vertex[2].x, (int)m_vertex[2].y);
 
-			MoveToEx(hdc, m_vertex[2].x, m_vertex[2].y, NULL);
-			LineTo(hdc, m_vertex[0].x, m_vertex[0].y);
+			MoveToEx(hdc, (int)m_vertex[2].x, (int)m_vertex[2].y, NULL);
+			LineTo(hdc, (int)m_vertex[0].x, (int)m_vertex[0].y);
 		}
 		void gTriangle::DrawLine(HDC hdc) {
 			SelectObject(hdc, m_pen);
-			MoveToEx(hdc, m_vertex[0].x, m_vertex[0].y, NULL);
-			LineTo(hdc, m_vertex[1].x, m_vertex[1].y);
+			MoveToEx(hdc, (int)m_vertex[0].x, (int)m_vertex[0].y, NULL);
+			LineTo(hdc, (int)m_vertex[1].x, (int)m_vertex[1].y);
 
-			MoveToEx(hdc, m_vertex[1].x, m_vertex[1].y, NULL);
-			LineTo(hdc, m_vertex[2].x, m_vertex[2].y);
+			MoveToEx(hdc, (int)m_vertex[1].x, (int)m_vertex[1].y, NULL);
+			LineTo(hdc, (int)m_vertex[2].x, (int)m_vertex[2].y);
 
-			MoveToEx(hdc, m_vertex[2].x, m_vertex[2].y, NULL);
-			LineTo(hdc, m_vertex[0].x, m_vertex[0].y);
+			MoveToEx(hdc, (int)m_vertex[2].x, (int)m_vertex[2].y, NULL);
+			LineTo(hdc, (int)m_vertex[0].x, (int)m_vertex[0].y);
 		}
 		void gTriangle::SetTri(math::Vec2 v1, math::Vec2 v2, math::Vec2 v3) {
 			m_vertex[0] = v1;
@@ -91,9 +91,9 @@ namespace tk {
 			invslope2 = (v3.x - v1.x) / (v3.y - v1.y);
 			curx1 = curx2 = v1.x;
 
-			for (int scanlineY = v1.y; scanlineY < v2.y; scanlineY++) {
-				MoveToEx(hdc, curx1, scanlineY, NULL);
-				LineTo(hdc, curx2, scanlineY);
+			for (int scanlineY = (int)v1.y; scanlineY < (int)v2.y; scanlineY++) {
+				MoveToEx(hdc, (int)curx1, (int)scanlineY, NULL);
+				LineTo(hdc, (int)curx2, (int)scanlineY);
 
 				curx1 += invslope1;
 				curx2 += invslope2;
@@ -104,9 +104,9 @@ namespace tk {
 			invslope2 = (v3.x - v2.x) / (v3.y - v2.y);
 			curx1 = curx2 = v3.x;
 
-			for (int scanlineY = v3.y; scanlineY > v1.y; scanlineY--) {
-				MoveToEx(hdc, curx1, scanlineY, NULL);
-				LineTo(hdc, curx2, scanlineY);
+			for (int scanlineY = (int)v3.y; scanlineY > (int)v1.y; scanlineY--) {
+				MoveToEx(hdc, (int)curx1, (int)scanlineY, NULL);
+				LineTo(hdc, (int)curx2, (int)scanlineY);
 
 				curx1 -= invslope1;
 				curx2 -= invslope2;

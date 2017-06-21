@@ -52,14 +52,14 @@ void Player::UpdatePlayer(double deltaTime, int screenW, int screenH) {
 	/* ---- Smooth control ---- */
 	if (m_entPos.y >= 0 && m_entPos.y <= screenH - m_entPos.height && m_fuel > 0) {
 		if (ply_forward) {
-			m_fuel -= deltaTime * 2;
+			m_fuel -= (float)deltaTime * 2;
 			if (m_vel_y < m_max_speed_y) {
 				if (m_vel_y < 0)m_vel_y += m_acceleration_y * (float)deltaTime;
 				else m_vel_y += m_acceleration_y * (float)deltaTime;
 			}
 		}
 		else if (ply_back) {
-			m_fuel -= deltaTime * 2;
+			m_fuel -= (float)deltaTime * 2;
 			if (m_vel_y > -m_max_speed_y) {
 				if (m_vel_y > 0)m_vel_y -= m_acceleration_y * (float)deltaTime;
 				else m_vel_y -= m_acceleration_y * (float)deltaTime;
@@ -89,14 +89,14 @@ void Player::UpdatePlayer(double deltaTime, int screenW, int screenH) {
 
 	if (m_entPos.x >= 0 && m_entPos.x <= screenW - m_entPos.width && m_fuel > 0) {
 		if (ply_left) {
-			m_fuel -= deltaTime * 2;
+			m_fuel -= (float)deltaTime * 2;
 			if (m_vel_x < m_max_speed_x) {
 				if (m_vel_x < 0)m_vel_x += m_acceleration_x * (float)deltaTime;
 				else m_vel_x += m_acceleration_x * (float)deltaTime;
 			}
 		}
 		else if (ply_right) {
-			m_fuel -= deltaTime * 2;
+			m_fuel -= (float)deltaTime * 2;
 			if (m_vel_x > -m_max_speed_x) {
 				if (m_vel_x > 0)m_vel_x -= m_acceleration_x * (float)deltaTime;
 				else m_vel_x -= m_acceleration_x * (float)deltaTime;

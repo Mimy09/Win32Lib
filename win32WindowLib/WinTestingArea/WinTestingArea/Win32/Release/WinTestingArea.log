@@ -1,10 +1,8 @@
-﻿  Generating code
-  0 of 214 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+﻿  tkGraphics.cpp
+  Generating code
+  6 of 226 functions ( 2.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-ToolKit_Win32.lib(tkString.obj) : warning LNK4099: PDB 'ToolKit.pdb' was not found with 'ToolKit_Win32.lib(tkString.obj)' or at 'L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\ToolKit.pdb'; linking object as if no debug info
-ToolKit_Win32.lib(tkTimer.obj) : warning LNK4099: PDB 'ToolKit.pdb' was not found with 'ToolKit_Win32.lib(tkTimer.obj)' or at 'L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\ToolKit.pdb'; linking object as if no debug info
-ToolKit_Win32.lib(tkWinObject.obj) : warning LNK4099: PDB 'ToolKit.pdb' was not found with 'ToolKit_Win32.lib(tkWinObject.obj)' or at 'L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\ToolKit.pdb'; linking object as if no debug info
-ToolKit_Win32.lib(tkWindow.obj) : warning LNK4099: PDB 'ToolKit.pdb' was not found with 'ToolKit_Win32.lib(tkWindow.obj)' or at 'L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\ToolKit.pdb'; linking object as if no debug info
-  WinTestingArea.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\WinTestingArea_Win32.exe
+  WinTestingArea.vcxproj -> D:\ProgramFiles\Programming\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\WinTestingArea_Win32.exe
+  WinTestingArea.vcxproj -> D:\ProgramFiles\Programming\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\WinTestingArea_Win32.pdb (Full PDB)

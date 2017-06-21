@@ -1,8 +1,7 @@
-﻿  Enemy.cpp
+﻿  Main.cpp
   Generating Code...
-  Skipping... (no relevant changes detected)
-  Player.cpp
+  Compiling...
   MyWindow.cpp
-  Main.cpp
-  EnemyFactory.cpp
-  WinTestingArea.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\WinTestingArea_Win32_DEBUG.exe
+  Generating Code...
+  WinTestingArea.vcxproj -> D:\ProgramFiles\Programming\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\WinTestingArea_Win32_DEBUG.exe
+  WinTestingArea.vcxproj -> D:\ProgramFiles\Programming\_GIT\Win32Lib\win32WindowLib\WinTestingArea\WinTestingArea_bin\WinTestingArea_Win32_DEBUG.pdb (Full PDB)

@@ -19,8 +19,10 @@ namespace tk {
 			}
 			case WM_CREATE:
 			{
-				win->screenWidth = GetSystemMetrics(SM_CXSCREEN);
-				win->screenHeight = GetSystemMetrics(SM_CYSCREEN);
+				//win->screenWidth = GetSystemMetrics(SM_CXSCREEN);
+				//win->screenHeight = GetSystemMetrics(SM_CYSCREEN);
+				win->screenWidth = 1920;
+				win->screenHeight = 1080;
 
 				HDC hdc = GetDC(hwnd);
 				win->memDC = CreateCompatibleDC(hdc);

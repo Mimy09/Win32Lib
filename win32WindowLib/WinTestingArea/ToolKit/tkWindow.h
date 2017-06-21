@@ -4,6 +4,8 @@
 // ##			By Mitchell Jenkins - 2017 May 12 - AIE			   ## //
 // ################################################################## //
 #pragma once
+#pragma warning(disable: 4008)
+#pragma warning(disable: 4302)
 
 /** Includes */
 #include <Windows.h>
