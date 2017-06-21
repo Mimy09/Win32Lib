@@ -1,3 +1,8 @@
+// ################################################################## //
+// ##							LINKED LIST						   ## //
+// ##															   ## //
+// ##			By Mitchell Jenkins - 2017 June 21 - AIE		   ## //
+// ################################################################## //
 #pragma once
 #include "tkMacros.h"
 
@@ -78,7 +83,7 @@ namespace tk {
 			Returns the Node at the given position
 			#param index - The position in the linked list
 			#return T& - reference to the value found*/
-			int find(Node node) const {
+			int find_n(Node node) const {
 				Node* cur = new Node, *pre = new Node;
 				cur = m_head;
 				int count = 0;
@@ -89,10 +94,25 @@ namespace tk {
 					count++;
 				} return count;
 			}
+			/* ---- FIND ----
+			Returns the Node at the given position
+			#param index - The position in the linked list
+			#return T& - reference to the value found*/
+			int find_i(T value) const {
+				Node* cur = new Node, *pre = new Node;
+				cur = m_head;
+				int count = 0;
+				while (cur->next != nullptr) {
+					if (cur->value == value) break;
+					pre = cur;
+					cur = cur->next;
+					count++;
+				} return count;
+			}
 			/* ---- OPERATOR= ----
 			Copies the valuse across*/
 			void operator=(LinkedList& other) {
-				if (this->size() != other.size()) TK_EXCEPTION("Linked List Copy");
+				if (this->size() != other.size()) TK_EXCEPTION("Linked List Copy Size");
 				for (int i = 0; i < m_size; i++)
 					find(i) = other[i];
 			}
@@ -129,17 +149,24 @@ namespace tk {
 			void insert(const int pos, const T& value) {
 				m_size++;
 				Node* temp = new Node;
-				temp->value = value;
-				temp->next = nullptr;
+				if (pos != 0) {
+					temp->value = value;
+					temp->next = nullptr;
 
-				Node* cur = new Node, *pre = new Node;
-				cur = m_head;
-				for (int i = 0; i < pos; i++) {
-					pre = cur;
-					cur = cur->next;
+					Node* cur = new Node, *pre = new Node;
+					cur = m_head;
+					for (int i = 0; i < pos; i++) {
+						pre = cur;
+						cur = cur->next;
+					}
+					pre->next = temp;
+					temp->next = cur;
 				}
-				pre->next = temp;
-				temp->next = cur;
+				else {
+					temp->value = value;
+					temp->next = m_head;
+					m_head = temp;
+				}
 			}
 			/* ---- INSERT ----
 			Creates a node at the given position in the linked list

@@ -3,7 +3,7 @@
 Player::Player() {
 	SetMovment(10.f, 500.f);
 	Reset();
-	m_lines.InsertEnd(tk::math::Vec2{ 400, 300 });
+	m_lines.push_back(tk::math::Vec2{ 400, 300 });
 }
 Player::Player(float x, float y, float width, float height) {
 	ply_forward = ply_back = ply_left = ply_right = false;

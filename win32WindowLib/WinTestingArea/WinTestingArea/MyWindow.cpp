@@ -16,11 +16,12 @@ MyWindow::MyWindow() {
 	m_score = 0;
 	m_deltaTime = 0;
 	comp_stats = "";
-	m_enemys.InsertEnd(m_enemyFactory.CreateEnemy(game::EnemyFactory::EASY));
+	m_enemys.push_back(m_enemyFactory.CreateEnemy(game::EnemyFactory::EASY));
 
 	m_enemy = m_enemyFactory.CreateEnemy(game::EnemyFactory::EASY);
 	m_enemy1 = m_enemyFactory.CreateEnemy(game::EnemyFactory::EASY);
 	m_enemy1->rect() = tk::graphics::Rect(75, 75, 100, 100);
+
 	//tri = { tk::math::Vec2{10, 10}, tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10,200 } };
 	//tri2 = { tk::math::Vec2{ 200, 10 }, tk::math::Vec2{ 10, 200 }, tk::math::Vec2{ 200, 200 } };
 
@@ -145,18 +146,18 @@ void MyWindow::Update(double deltaTime) {
 		break;
 	case tk::states::GAME_STATE::OPTIONS:
 	{
-		/*v1 = mat * tk::math::Vec3{ -100, -100, 1 };
+		v1 = mat * tk::math::Vec3{ -100, -100, 1 };
 		v2 = mat * tk::math::Vec3{ 100, -100, 1 };
 		v3 = mat * tk::math::Vec3{ 100,  100, 1 };
 		v4 = mat * tk::math::Vec3{ -100,  100, 1 };
 
-		mat.SetRotateZ(m_timer.elapsed() / 10);
+		mat.SetRotateZ((float)m_timer.elapsed() / 4);
 		rect_1 = {
 			tk::math::Vec2{ v1.x + ScreenRectWidth() / 2, v1.y + ScreenRectHeight() / 2 },
 			tk::math::Vec2{ v2.x + ScreenRectWidth() / 2, v2.y + ScreenRectHeight() / 2 },
 			tk::math::Vec2{ v3.x + ScreenRectWidth() / 2, v3.y + ScreenRectHeight() / 2 },
 			tk::math::Vec2{ v4.x + ScreenRectWidth() / 2, v4.y + ScreenRectHeight() / 2 }
-		};*/
+		};
 		break;
 	}
 	case tk::states::GAME_STATE::CLOSING: break;
@@ -202,6 +203,8 @@ void MyWindow::Menu(HDC hdc) {
 }
 
 void MyWindow::Options(HDC hdc) {
+	rect_1.Draw(hdc, TK_PEN_WHITE);
+
 	comp_stats = (tk::String)"   FPS: " + m_timer.GetFPS();
 	comp_stats += (tk::String)"   DT: " + m_deltaTime;
 	TextOut(hdc, 10, 10, comp_stats.data, comp_stats.length());
@@ -222,14 +225,10 @@ void MyWindow::Game(HDC hdc) {
 			m_score++;
 			ply.Fuel() += 10;
 			ply.Health(ply.Health() + 25);
-			if (m_enemy) {
-				delete m_enemy;
-				m_enemy = nullptr;
-			}
-			if (m_enemy1) {
-				delete m_enemy1;
-				m_enemy1 = nullptr;
-			}
+			
+			TK_SAFE_DELETE(m_enemy);
+			TK_SAFE_DELETE(m_enemy1);
+			
 			int i = (int)(rand() % 3);
 			switch (i) {
 			case 1:
@@ -246,8 +245,8 @@ void MyWindow::Game(HDC hdc) {
 				m_enemy = m_enemyFactory.CreateEnemy(game::EnemyFactory::EASY); break;
 			}
 			int randX = rand() % 750, randY = rand() % 550;
-			m_enemy1->rect() = tk::graphics::Rect(randX - 25, randY - 25, 100, 100 );
-			m_enemy->rect() = tk::graphics::Rect(randX, randY, 50, 50 );
+			m_enemy1->rect() = tk::graphics::Rect((float)randX - 25.f, (float)randY - 25.f, 100.f, 100.f );
+			m_enemy->rect() = tk::graphics::Rect((float)randX, (float)randY, 50.f, 50.f );
 		}
 	}
 
@@ -265,8 +264,8 @@ void MyWindow::Game(HDC hdc) {
 	TextOut(hdc, 10, 10, comp_stats.data, comp_stats.length());
 	TextOut(hdc, 10, 30, k.data, k.length());
 	TextOut(hdc, 10, 50, ply_score.data, ply_score.length());
-	TextOut(hdc, m_enemy->rect().x, m_enemy->rect().y, enemy_stats.data, enemy_stats.length());
-	TextOut(hdc, ply.rect().x, ply.rect().y, ply_stats.data, ply_stats.length());
+	TextOut(hdc, (int)m_enemy->rect().x, (int)m_enemy->rect().y, enemy_stats.data, enemy_stats.length());
+	TextOut(hdc, (int)ply.rect().x, (int)ply.rect().y, ply_stats.data, ply_stats.length());
 }
 
 void MyWindow::SplashScreen(HDC hdc) {

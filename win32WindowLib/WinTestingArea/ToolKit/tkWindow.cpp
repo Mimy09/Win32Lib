@@ -104,7 +104,7 @@ namespace tk {
 				WS_EX_OVERLAPPEDWINDOW,
 				className.data,
 				winTitle.data,
-				WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME | WS_CLIPCHILDREN,
+				WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME ^ WS_MAXIMIZEBOX | WS_CLIPCHILDREN,
 				rectPos.left == 0 ? CW_USEDEFAULT : rectPos.left,
 				rectPos.top == 0 ? CW_USEDEFAULT : rectPos.top,
 				winPos.right - winPos.left,

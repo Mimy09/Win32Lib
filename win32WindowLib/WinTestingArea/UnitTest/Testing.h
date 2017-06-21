@@ -18,6 +18,9 @@ public:
 
 private:
 	void LinkedListTesting();
+	void HashMapTesting();
+	void TreeTesting();
+	void ObjectPoolTesting();
 
 	/* ---- TK LIBRARY ---- */
 	tk::std::LinkedList<int> m_tkLinkedList;

@@ -1,5 +1,4 @@
-﻿  tkTimer.cpp
-  tkWindow.cpp
+﻿  tkWindow.cpp
 tkWindow.cpp(11): warning C4312: 'type cast': conversion from 'LONG' to 'tk::win::Window *' of greater size
 tkWindow.cpp(17): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'LONG'
 tkWindow.cpp(17): warning C4302: 'type cast': truncation from 'LPVOID' to 'LONG'

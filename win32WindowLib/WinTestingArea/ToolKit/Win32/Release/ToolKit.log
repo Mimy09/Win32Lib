@@ -1,4 +1,5 @@
-﻿  tkTimer.cpp
+﻿  tkString.cpp
+  tkTimer.cpp
   tkWindow.cpp
 tkWindow.cpp(86): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
 tkWindow.cpp(90): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
@@ -20,4 +21,5 @@ l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkLinkedList.h(60): warni
           ]
   l:\_git\win32lib\win32windowlib\wintestingarea\toolkit\tkWindow.h(194): note: see reference to class template instantiation 'tk::std::ObjectPool<HBRUSH>' being compiled
 tkWindow.cpp(201): warning C4008: 'WinMain': 'inline' attribute ignored
+  tkWinObject.cpp
   ToolKit.vcxproj -> L:\_GIT\Win32Lib\win32WindowLib\WinTestingArea\ToolKit_bin\ToolKit_Win32.lib

@@ -1,6 +1,11 @@
+// ################################################################## //
+// ##							HASH MAP   						   ## //
+// ##															   ## //
+// ##			By Mitchell Jenkins - 2017 June 21 - AIE		   ## //
+// ################################################################## //
 #pragma once
 #include "tkString.h"
-#include "tkLinkList.h""
+#include "tkLinkedList.h""
 
 namespace tk {
 	namespace std {
@@ -11,18 +16,18 @@ namespace tk {
 			~HashMap() {}
 
 			void Add(tk::String key, T value) {
-				m_key.InsertEnd(Hash(key));
-				m_value.InsertEnd(value);
+				m_key.push_back(Hash(key));
+				m_value.push_back(value);
 			}
 
 			void Remove(tk::String key) {
 				int index m_key.FindValuePos(Hash(key));
-				m_key.DeletePos(index);
-				m_value.DeletePos(index);
+				m_key.erase(index);
+				m_value.erase(index);
 			}
 
 			T Get(tk::String key) {
-				return m_value.Index(m_key.FindValuePos(Hash(key)));
+				return m_value.find(m_key.find_i(Hash(key)));
 			}
 
 			unsigned int Hash (tk::String key) {
@@ -36,8 +41,8 @@ namespace tk {
 				} return (hash & 0x7FFFFFFF);
 			}
 		private:
-			LinkList<T> m_value;
-			LinkList<UINT> m_key;
+			LinkedList<T> m_value;
+			LinkedList<UINT> m_key;
 		};
 
 	}

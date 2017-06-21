@@ -1,7 +1,8 @@
-/*************************************************
-					  TOOL KIT
-			Mitchell Jenkins 12-May-17
-**************************************************/
+// ################################################################## //
+// ##							WINDOW							   ## //
+// ##															   ## //
+// ##			By Mitchell Jenkins - 2017 May 12 - AIE			   ## //
+// ################################################################## //
 #pragma once
 
 /** Includes */
@@ -37,8 +38,8 @@
 
 
 
-#define TK_PEN_BLACK *m_penPool.ReturnObject(0)
-#define TK_PEN_WHITE *m_penPool.ReturnObject(1)
+#define TK_PEN_BLACK *m_penPool.ReturnObjectIndex(0)
+#define TK_PEN_WHITE *m_penPool.ReturnObjectIndex(1)
 
 #define TK_PEN_RED *m_penPool.ReturnObjectIndex(2)
 #define TK_PEN_GREEN *m_penPool.ReturnObjectIndex(3)
